@@ -1,0 +1,45 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import ProductCard from "../cards/ProductCard.astro";
+import { ButterIcon, FlourIcon, MilkIcon, YogurtIcon, GheeIcon } from "../../assets/icons";
+import BajraIcon from "../../assets/bajray.png";
+import BesanIcon from "../../assets/besan.png";
+import MakaiIcon from "../../assets/makai.png";
+import OatFlourIcon from "../../assets/oat_flour.png";
+import { Image } from "astro:assets";
+
+const categories = [
+	{ icon: ButterIcon, label: "Butter" },
+	{ icon: FlourIcon, label: "Flour" },
+	{ icon: MilkIcon, label: "Milk" },
+	{ icon: YogurtIcon, label: "Yogurt" },
+	{ icon: GheeIcon, label: "Ghee" },
+];
+const products = [
+	{ name: "Bajray Ka Atta", icon: BajraIcon, weight: "5kg" },
+	{ name: "Besan", icon: BesanIcon, weight: "10kg" },
+	{ name: "Makkai ka Atta", icon: MakaiIcon, weight: "2kg" },
+	{ name: "Oat Flour", icon: OatFlourIcon, weight: "1kg" },
+];
+---
+
+<section id='products' class='py-20 bg-gray-50'>
+	<div class='container mx-auto px-4'>
+		<SectionHeading title='Products' subtitle='Pure organic products for everyday life' />
+
+		<div class='flex justify-center space-x-8 mb-12'>
+			{
+				categories.map((category) => (
+					<button class='flex flex-col items-center space-y-2 hover:transform hover:-translate-y-1 transition-transform'>
+						<Image src={category.icon} alt={category.label} />
+						<span class='text-sm font-medium text-kfood-body'>{category.label}</span>
+					</button>
+				))
+			}
+		</div>
+
+		<div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+			{products.map((product) => <Image src={product.icon} alt={product.name} />)}
+		</div>
+	</div>
+</section>

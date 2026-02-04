@@ -1,0 +1,47 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import NewsCard from '../cards/NewsCard.astro';
+
+const news = [
+  {
+    title: 'New Organic Rice Varieties Launched',
+    excerpt: 'We are excited to introduce three new varieties of organic basmati rice, sourced from the finest farms in Punjab.',
+    date: 'Jan 15, 2026'
+  },
+  {
+    title: 'K Food Expands to 500+ Retail Stores',
+    excerpt: 'Our products are now available in over 500 retail locations across Pakistan, making quality organic food more accessible.',
+    date: 'Jan 10, 2026'
+  },
+  {
+    title: 'Sustainability Award Recognition',
+    excerpt: 'K Food receives national recognition for our commitment to sustainable farming practices and farmer welfare programs.',
+    date: 'Dec 28, 2025'
+  },
+  {
+    title: 'Partnership with Local Farmers',
+    excerpt: 'Announcing new partnerships with 50+ local farmers to bring you the freshest organic produce directly from the source.',
+    date: 'Dec 20, 2025'
+  }
+];
+---
+
+<section id="news" class="py-20 bg-[var(--color-kfood-primary)] text-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-2">News & Updates</h2>
+      <p class="text-gray-300">Stay updated with our latest announcements</p>
+      <div class="w-20 h-1 bg-[var(--color-kfood-orange)] mx-auto mt-4"></div>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {news.map((article) => (
+        <NewsCard 
+          title={article.title}
+          excerpt={article.excerpt}
+          date={article.date}
+        />
+      ))}
+    </div>
+  </div>
+</section>

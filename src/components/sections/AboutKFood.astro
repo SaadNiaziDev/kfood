@@ -1,0 +1,29 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import AboutKFoodImage from "../../assets/about_kfood.png";
+import { Image } from "astro:assets";
+
+const aboutKFoodImage: ImageMetadata = AboutKFoodImage;
+---
+
+<section id='about' class='bg-white'>
+	<div class='grid md:grid-cols-2 items-center'>
+		<div class='container mx-auto p-10'>
+			<h2 class='text-4xl font-bold text--color-kfood-primary)] mb-6 font-Oswald'>About KFood</h2>
+			<p class='text-gray-700 mb-4 leading-relaxed'>
+				At KFood, we believe that the strength of Pakistan lies in its villages in the hands of the farmers, families,
+				and communities who nurture the nation’s growth. Waseela is more than an initiative; it’s a movement to empower
+				rural Pakistan through innovation, knowledge, and collaboration.
+			</p>
+			<p class='text-gray-700 mb-4 leading-relaxed'>
+				We work as a catalyst for change, bridging the gap between data-driven research and real-world impact. By
+				understanding the needs of rural communities and combining insights with practical solutions, Waseela develops
+				projects that boost productivity, improve livelihoods, and foster sustainable economic growth.
+			</p>
+		</div>
+
+		<div>
+			<Image src={aboutKFoodImage} alt='About KFood' />
+		</div>
+	</div>
+</section>

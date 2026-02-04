@@ -1,0 +1,20 @@
+---
+interface Props {
+  quote: string;
+  customerName: string;
+  logoText?: string;
+  class?: string;
+}
+
+const { quote, customerName, logoText, class: className = '' } = Astro.props;
+---
+
+<div class={`bg-white rounded-lg shadow-md p-6 border-t-4 border-[var(--color-kfood-orange)] hover:shadow-xl transition-shadow ${className}`}>
+  <div class="mb-4">
+    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-[var(--color-kfood-primary)] font-bold text-xl mb-4">
+      {logoText || customerName.substring(0, 2)}
+    </div>
+  </div>
+  <p class="text-gray-700 text-sm mb-4 italic leading-relaxed">"{quote}"</p>
+  <p class="font-semibold text-[var(--color-kfood-primary)]">{customerName}</p>
+</div>

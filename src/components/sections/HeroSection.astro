@@ -1,0 +1,40 @@
+---
+import Button from "../ui/Button.astro";
+import Banner from "../../assets/banner.png";
+import type { ImageMetadata } from "astro";
+
+const banner: ImageMetadata = Banner;
+---
+
+<section class='relative w-full min-h-[600px] md:min-h-[700px] overflow-hidden'>
+	<!-- Background Image -->
+	<div class='absolute inset-0 z-0'>
+		<img src={banner.src} alt='Hero Section' class='w-full h-full object-cover' />
+		<!-- Dark overlay for better text readability -->
+		<div class='absolute inset-0 bg-black/30'></div>
+	</div>
+
+	<!-- Content Container -->
+	<div class='relative z-10 container mx-auto px-4 h-full min-h-[600px] md:min-h-[700px] flex items-center'>
+		<div class='max-w-2xl font-Oswald'>
+			<h1 class='text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight'>
+				From <span class='font-extrabold text-5xl md:text-6xl lg:text-7xl text-white'>Farm</span> to
+				<span class='font-extrabold text-5xl md:text-6xl lg:text-7xl text-white'>Table</span>
+			</h1>
+			<p class='lg:text-3xl md:text-2xl leading-relaxed text-white font-semibold'>Bringing Nature to Your Plate</p>
+
+			<!-- Buttons -->
+			<div class='flex flex-col sm:flex-row gap-4'>
+				<Button variant='primary' size='strech' class='btn-primary bg-kfood-primary hover:bg-kfood-primary/90'>
+					Shop Online
+				</Button>
+				<Button
+					variant='accent'
+					size='strech'
+					class='btn-primary bg-white text-kfood-primary border-2 border-kfood-primary hover:bg-gray-100'>
+					Find a Store
+				</Button>
+			</div>
+		</div>
+	</div>
+</section>

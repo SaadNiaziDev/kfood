@@ -1,0 +1,18 @@
+---
+interface Props {
+  number: string;
+  label: string;
+  icon?: string;
+  class?: string;
+}
+
+const { number, label, icon = '📊', class: className = '' } = Astro.props;
+---
+
+<div class={`bg-white rounded-lg shadow-lg p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300 ${className}`}>
+  <div class="text-4xl mb-3">{icon}</div>
+  <div class="text-4xl font-bold text-[var(--color-kfood-primary)] mb-2">
+    {number}<span class="text-[var(--color-kfood-orange)]">+</span>
+  </div>
+  <p class="text-sm text-gray-600 font-medium">{label}</p>
+</div>

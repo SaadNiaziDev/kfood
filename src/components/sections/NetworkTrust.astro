@@ -1,0 +1,30 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import StatCard from '../cards/StatCard.astro';
+
+const stats = [
+  { number: '5', label: 'Distributors', icon: '🚚' },
+  { number: '10', label: 'Years in Business', icon: '📅' },
+  { number: '10,000', label: 'Happy Customers', icon: '😊' },
+  { number: '15', label: 'Product Varieties', icon: '📦' },
+  { number: '500', label: 'Retail Stores', icon: '🏪' }
+];
+---
+
+<section class="py-20 bg-gradient-to-br from-[var(--color-kfood-background)] to-white relative overflow-hidden">
+  <div class="absolute top-0 left-0 w-64 h-64 bg-[var(--color-kfood-orange)] opacity-10 rounded-full -translate-x-32 -translate-y-32"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-[var(--color-kfood-primary)] opacity-10 rounded-full translate-x-48 translate-y-48"></div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+    <SectionHeading 
+      title="Network you can trust" 
+      subtitle="Our reach and impact across Pakistan"
+    />
+    
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      {stats.map((stat) => (
+        <StatCard number={stat.number} label={stat.label} icon={stat.icon} />
+      ))}
+    </div>
+  </div>
+</section>

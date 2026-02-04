@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  imagePosition?: 'left' | 'right';
+  backgroundColor?: string;
+  isDark?: boolean;
+}
+
+const { 
+  title, 
+  description, 
+  imagePosition = 'left',
+  backgroundColor = 'var(--color-kfood-primary)',
+  isDark = true
+} = Astro.props;
+
+const textColorClass = isDark ? 'text-white' : 'text-[var(--color-kfood-body)]';
+const gridOrder = imagePosition === 'left' ? '' : 'md:flex-row-reverse';
+---
+
+<section class="py-20" style={`background-color: ${backgroundColor}`}>
+  <div class="container mx-auto px-4">
+    <div class={`flex flex-col md:flex-row gap-12 items-center ${gridOrder}`}>
+      <div class="flex-1">
+        <div class="bg-gradient-to-br from-[var(--color-kfood-orange)] to-[var(--color-kfood-yellow)] h-96 rounded-2xl flex items-center justify-center">
+          <div class="text-white text-8xl">🥗</div>
+        </div>
+      </div>
+      
+      <div class={`flex-1 ${textColorClass}`}>
+        <h2 class="text-4xl font-bold mb-6">{title}</h2>
+        <p class="text-lg leading-relaxed mb-6 opacity-90">
+          {description}
+        </p>
+        <slot />
+      </div>
+    </div>
+  </div>
+</section>

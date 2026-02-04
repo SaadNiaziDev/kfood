@@ -1,0 +1,40 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const categories = {
+  'OPV': ['Kalabagh', 'Qila Kalabagh', 'D.I Khan', 'Kulachi', 'Mochana', 'Jandola'],
+  'Exports': ['Oman', 'Canada', 'China', 'Dubai', 'Saudi Arabia'],
+  'Pulses': ['Masoor Daal', 'Moong Daal', 'Channa Daal', 'Mash Daal'],
+  'A&C': ['Atta', 'Maida', 'Sooji', 'Chakki Atta', 'Besan', 'Rice']
+};
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center justify-center w-20 h-20 bg-[var(--color-kfood-primary)] rounded-full text-white text-4xl mb-4">
+        📍
+      </div>
+      <h2 class="text-4xl font-bold text-[var(--color-kfood-primary)] mb-2">
+        Buy at a Store Near You
+      </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+      {Object.entries(categories).map(([category, items]) => (
+        <div>
+          <h3 class="font-bold text-[var(--color-kfood-primary)] text-xl mb-4 pb-2 border-b-2 border-[var(--color-kfood-orange)]">
+            {category}
+          </h3>
+          <ul class="space-y-2">
+            {items.map((item) => (
+              <li class="text-gray-700 text-sm hover:text-[var(--color-kfood-orange)] cursor-pointer transition-colors">
+                • {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

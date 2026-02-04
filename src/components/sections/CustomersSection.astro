@@ -1,0 +1,53 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import TestimonialCard from '../cards/TestimonialCard.astro';
+
+const testimonials = [
+  {
+    quote: "K Food has transformed the way we source our ingredients. The quality is exceptional and the farm-to-table approach ensures freshness every time.",
+    customerName: "Metro Foods",
+    logoText: "MF"
+  },
+  {
+    quote: "Working with K Food has been a game-changer for our business. Their commitment to organic products and reliable supply chain is unmatched.",
+    customerName: "Carrefour",
+    logoText: "CF"
+  },
+  {
+    quote: "The transparency and quality standards of K Food products have made them our preferred supplier. Our customers love their organic range.",
+    customerName: "Imtiaz Super Market",
+    logoText: "IM"
+  }
+];
+
+const partnerLogos = [
+  'Al-Fatah', 'Chase Up', 'CSD', 'Makro', 'Imtiaz'
+];
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <SectionHeading 
+      title="Our Customers" 
+      subtitle="Trusted by leading retailers across Pakistan"
+    />
+    
+    <div class="grid md:grid-cols-3 gap-8 mb-12">
+      {testimonials.map((testimonial) => (
+        <TestimonialCard 
+          quote={testimonial.quote}
+          customerName={testimonial.customerName}
+          logoText={testimonial.logoText}
+        />
+      ))}
+    </div>
+    
+    <div class="flex flex-wrap justify-center items-center gap-8 pt-8 border-t">
+      {partnerLogos.map((logo) => (
+        <div class="bg-gray-100 px-8 py-4 rounded-lg hover:shadow-md transition-shadow">
+          <span class="font-semibold text-[var(--color-kfood-primary)]">{logo}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

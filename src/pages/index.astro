@@ -1,11 +1,60 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import AboutKFood from '../components/sections/AboutKFood.astro';
+import ProductsSection from '../components/sections/ProductsSection.astro';
+import NetworkTrust from '../components/sections/NetworkTrust.astro';
+import FeatureSection from '../components/sections/FeatureSection.astro';
+import CustomersSection from '../components/sections/CustomersSection.astro';
+import StoreLocator from '../components/sections/StoreLocator.astro';
+import PartnerForm from '../components/sections/PartnerForm.astro';
+import NewsSection from '../components/sections/NewsSection.astro';
+import KisaanStories from '../components/sections/KisaanStories.astro';
+import Certifications from '../components/sections/Certifications.astro';
 ---
 
 <Layout>
-	<Welcome />
+  <Header />
+  
+  <main>
+    <HeroSection />
+    
+    <AboutKFood />
+    
+    <ProductsSection />
+    
+    <NetworkTrust />
+    
+    <FeatureSection 
+      title="Food is great"
+      description="We source the finest organic ingredients directly from trusted farms across Pakistan. Our commitment to quality means every product meets rigorous standards for purity, taste, and nutritional value. From farm to your table, we ensure excellence at every step."
+      imagePosition="left"
+      backgroundColor="var(--color-kfood-primary)"
+      isDark={true}
+    />
+    
+    <FeatureSection 
+      title="Specially Sourced"
+      description="Each product is carefully selected from farms that practice sustainable and ethical farming. We work closely with local farmers to ensure traditional methods are preserved while maintaining the highest quality standards. Your health and satisfaction are our top priorities."
+      imagePosition="right"
+      backgroundColor="#ffffff"
+      isDark={false}
+    />
+    
+    <CustomersSection />
+    
+    <StoreLocator />
+    
+    <PartnerForm />
+    
+    <NewsSection />
+    
+    <KisaanStories />
+    
+    <Certifications />
+  </main>
+  
+  <Footer />
 </Layout>

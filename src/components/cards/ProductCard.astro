@@ -1,0 +1,28 @@
+---
+interface Props {
+	name: string;
+	weight?: string;
+	imageUrl?: string;
+	class?: string;
+}
+
+const { name, weight, imageUrl, class: className = "" } = Astro.props;
+---
+
+<div
+	class={`bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden ${className}`}>
+	<div
+		class='bg-gradient-to-br from-[var(--color-kfood-orange)] to-[var(--color-kfood-yellow)] h-48 flex items-center justify-center'>
+		{
+			imageUrl ? (
+				<img src={imageUrl} alt={name} class='w-full h-full object-cover' />
+			) : (
+				<div class='text-white text-6xl'>🌾</div>
+			)
+		}
+	</div>
+	<div class='p-4 text-center'>
+		<h3 class='font-semibold text-[var(--color-kfood-body)] mb-1'>{name}</h3>
+		{weight && <p class='text-sm text-gray-500'>{weight}</p>}
+	</div>
+</div>

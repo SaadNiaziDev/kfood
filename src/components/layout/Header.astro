@@ -1,0 +1,40 @@
+---
+import Button from "../ui/Button.astro";
+
+import Logo from "../../assets/logo.png";
+import type { ImageMetadata } from "astro";
+import {Search} from "@lucide/astro"
+
+const logo: ImageMetadata = Logo;
+---
+
+<header class="bg-white text-white sticky top-0 z-50">
+  <div class="bg-kfood-primary h-10 w-full">
+
+  </div>
+  <nav class="bg-background mx-auto py-5 px-10 flex items-center justify-between">
+    <div class="flex items-center">
+      <img src={logo.src} alt="KFood Logo" class="w-20">
+    </div>
+    
+    <ul class="hidden md:flex items-center gap-4 text-sm">
+      <li><a href="#hero-section" >Benefits</a></li>
+      <li><a href="#about-kfood" >About KFood</a></li>
+      <li><a href="#products" >Products</a></li>
+      <li><a href="#network-trust" >Our Brands</a></li>
+      <li><a href="#careers" >Careers</a></li>
+      <li><a href="#store-locator" >Find a Store</a></li>
+      <li><a href="#partner-form" >Partnership</a></li>
+      <li><a href="#news-section" >News</a></li>
+    </ul>
+    
+    <div class="flex items-center space-x-4">
+      <Button variant="primary" size="sm" class="btn-primary bg-kfood-primary text-white">
+        Shop Online
+      </Button>
+
+      <Search color="black" class="w-5 h-5" />
+    </div>
+  </nav>
+</header>
+

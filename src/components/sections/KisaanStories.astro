@@ -1,0 +1,25 @@
+---
+import Button from '../ui/Button.astro';
+---
+
+<section class="py-0">
+  <div class="relative h-96 bg-gradient-to-r from-[var(--color-kfood-green)] to-[var(--color-kfood-primary)] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-black opacity-30"></div>
+    <div class="text-white text-9xl opacity-20 absolute">👨‍🌾</div>
+    
+    <div class="relative z-10 text-center">
+      <h2 class="text-white text-5xl font-bold mb-4">Beyond Our Products</h2>
+      <div class="bg-[var(--color-kfood-orange)] inline-block px-12 py-4 rounded-full">
+        <h3 class="text-white text-3xl font-bold">Kisaan Stories</h3>
+      </div>
+      <p class="text-white text-lg mt-6 max-w-2xl mx-auto">
+        Discover the stories of farmers who make our products possible
+      </p>
+      <div class="mt-8">
+        <Button variant="accent" size="lg">
+          Read Their Stories
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
