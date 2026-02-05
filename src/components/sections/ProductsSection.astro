@@ -7,6 +7,7 @@ import BesanIcon from "../../assets/besan.png";
 import MakaiIcon from "../../assets/makai.png";
 import OatFlourIcon from "../../assets/oat_flour.png";
 import { Image } from "astro:assets";
+import Button from "../ui/Button.astro";
 
 const categories = [
 	{ icon: ButterIcon, label: "Butter" },
@@ -23,8 +24,8 @@ const products = [
 ];
 ---
 
-<section id='products' class='py-20 bg-gray-50'>
-	<div class='container mx-auto px-4'>
+<section id='products' class='py-5 bg-white'>
+	<div class='container mx-auto px-4 flex flex-col items-center'>
 		<SectionHeading title='Products' subtitle='Pure organic products for everyday life' />
 
 		<div class='flex justify-center space-x-8 mb-12'>
@@ -40,6 +41,18 @@ const products = [
 
 		<div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
 			{products.map((product) => <Image src={product.icon} alt={product.name} />)}
+		</div>
+
+		<div class='flex flex-col items-center justify-center space-y-4'>
+			<div class='text-center text-lg font-normal mt-4 p-5 tracking-widest'>
+				Discover a curated selection of KFood products available to shop online.
+			</div>
+			<Button
+				variant='primary'
+				size='lg'
+				class='btn-primary !p-0 w-1/2 bg-kfood-primary hover:bg-kfood-primary/90 !text-[30px]'>
+				Shop Now
+			</Button>
 		</div>
 	</div>
 </section>
