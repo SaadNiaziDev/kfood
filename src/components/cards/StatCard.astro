@@ -1,4 +1,6 @@
 ---
+import Icon from "../ui/Icon.astro";
+
 interface Props {
   number: string;
   label: string;
@@ -6,13 +8,25 @@ interface Props {
   class?: string;
 }
 
-const { number, label, icon = '📊', class: className = '' } = Astro.props;
+const { number, label, icon, class: className = '' } = Astro.props;
 ---
 
-<div class={`bg-white rounded-lg shadow-lg p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300 ${className}`}>
-  <div class="text-4xl mb-3">{icon}</div>
-  <div class="text-4xl font-bold text-[var(--color-kfood-primary)] mb-2">
+<div class={`rounded-[21px] bg-white p-6 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:transform ${className}`}>
+  <div class="mb-4 flex h-[68px] items-center justify-center">
+    {icon ? (
+      <div class="flex h-[68px] w-[68px] items-center justify-center rounded-full bg-[#F8F2EC]">
+        <Icon icon={icon} class="h-10 w-10 text-[var(--color-kfood-primary)]" />
+      </div>
+    ) : null}
+  </div>
+  <div
+    class="mb-2 font-medium text-[#013049]"
+    style="font-family: 'Oswald', sans-serif; font-size: 50px; line-height: 60px;">
     {number}<span class="text-[var(--color-kfood-orange)]">+</span>
   </div>
-  <p class="text-sm text-gray-600 font-medium">{label}</p>
+  <p
+    class="text-center font-normal text-[#717171]"
+    style="font-family: 'Josefin Sans', sans-serif; font-size: 22px; line-height: 28px;">
+    {label}
+  </p>
 </div>

@@ -1,47 +1,76 @@
 ---
-import SectionHeading from '../ui/SectionHeading.astro';
-import NewsCard from '../cards/NewsCard.astro';
+import { Image } from "astro:assets";
+import NewsCard from "../cards/NewsCard.astro";
+import bg2Image from "../../assets/BG2 4.png";
+import articleImage from "../../assets/article.png";
 
 const news = [
-  {
-    title: 'New Organic Rice Varieties Launched',
-    excerpt: 'We are excited to introduce three new varieties of organic basmati rice, sourced from the finest farms in Punjab.',
-    date: 'Jan 15, 2026'
-  },
-  {
-    title: 'K Food Expands to 500+ Retail Stores',
-    excerpt: 'Our products are now available in over 500 retail locations across Pakistan, making quality organic food more accessible.',
-    date: 'Jan 10, 2026'
-  },
-  {
-    title: 'Sustainability Award Recognition',
-    excerpt: 'K Food receives national recognition for our commitment to sustainable farming practices and farmer welfare programs.',
-    date: 'Dec 28, 2025'
-  },
-  {
-    title: 'Partnership with Local Farmers',
-    excerpt: 'Announcing new partnerships with 50+ local farmers to bring you the freshest organic produce directly from the source.',
-    date: 'Dec 20, 2025'
-  }
+	{
+		title: "Kfood Expands to All over Punjab",
+		excerpt: "Stay updated with the happenings at Kfood - New launches, Partnerships and more.",
+		date: "January 28, 2026",
+		category: "Launch",
+		image: articleImage,
+	},
+	{
+		title: "Kfood Expands to All over Punjab",
+		excerpt: "Stay updated with the happenings at Kfood - New launches, Partnerships and more.",
+		date: "January 28, 2026",
+		category: "Partnership",
+		image: articleImage,
+	},
+	{
+		title: "Kfood Expands to All over Punjab",
+		excerpt: "Stay updated with the happenings at Kfood - New launches, Partnerships and more.",
+		date: "January 28, 2026",
+		category: "Event",
+		image: articleImage,
+	},
+	{
+		title: "Kfood Expands to All over Punjab",
+		excerpt: "Stay updated with the happenings at Kfood - New launches, Partnerships and more.",
+		date: "January 28, 2026",
+		category: "Expansion",
+		image: articleImage,
+	},
 ];
 ---
 
-<section id="news" class="py-20 bg-[var(--color-kfood-primary)] text-white">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold mb-2">News & Updates</h2>
-      <p class="text-gray-300">Stay updated with our latest announcements</p>
-      <div class="w-20 h-1 bg-[var(--color-kfood-orange)] mx-auto mt-4"></div>
-    </div>
-    
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {news.map((article) => (
-        <NewsCard 
-          title={article.title}
-          excerpt={article.excerpt}
-          date={article.date}
-        />
-      ))}
-    </div>
-  </div>
+<section id='news' class='relative py-20 overflow-hidden bg-primary'>
+	<div
+		class='absolute right-0 top-0 w-full max-w-[1441px] h-full opacity-40 pointer-events-none overflow-hidden'
+		aria-hidden='true'>
+		<Image src={bg2Image} alt='' class='w-full h-full object-cover object-right' quality={80} />
+	</div>
+	<div class='container mx-auto px-4 relative z-10'>
+		<div class='text-center mb-12'>
+			<h2
+				class='text-white mb-2'
+				style="font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 50px; line-height: 60px;">
+				News & Updates
+			</h2>
+			<p
+				class='text-white mx-auto max-w-[609px]'
+				style="font-family: 'Josefin Sans', sans-serif; font-weight: 400; font-size: 22px; line-height: 22px;">
+				Stay updated with the happenings at Kfood - New launches, Partnerships and more.
+			</p>
+			<div class='w-20 h-1 mx-auto mt-4' style='background: #D66500;'></div>
+		</div>
+
+		<div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1280px] mx-auto'>
+			{
+				news?.map((article) =>
+					article ? (
+						<NewsCard
+							title={article.title}
+							excerpt={article.excerpt}
+							date={article.date}
+							category={article.category}
+							image={article.image}
+						/>
+					) : null,
+				)
+			}
+		</div>
+	</div>
 </section>

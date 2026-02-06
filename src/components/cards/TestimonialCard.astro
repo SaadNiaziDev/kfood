@@ -1,20 +1,31 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 interface Props {
-  quote: string;
-  customerName: string;
-  logoText?: string;
-  class?: string;
+	quote: string;
+	customerName?: string;
+	logoText?: string;
+	logoImage?: ImageMetadata;
+	class?: string;
 }
 
-const { quote, customerName, logoText, class: className = '' } = Astro.props;
+const { quote, customerName, logoText, logoImage, class: className = "" } = Astro.props;
 ---
 
-<div class={`bg-white rounded-lg shadow-md p-6 border-t-4 border-[var(--color-kfood-orange)] hover:shadow-xl transition-shadow ${className}`}>
-  <div class="mb-4">
-    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-[var(--color-kfood-primary)] font-bold text-xl mb-4">
-      {logoText || customerName.substring(0, 2)}
-    </div>
-  </div>
-  <p class="text-gray-700 text-sm mb-4 italic leading-relaxed">"{quote}"</p>
-  <p class="font-semibold text-[var(--color-kfood-primary)]">{customerName}</p>
+<div
+	class={`relative bg-white border border-[#034D6D] rounded-[21px] pt-14 pb-6 px-6 flex flex-col min-h-[349px] w-full max-w-[376px] mx-auto md:mx-0 ${className}`}>
+	<div
+		class='absolute left-1/2 -translate-x-1/2 -top-14 w-[111px] h-[111px] rounded-full bg-[#F8F2EC] flex items-center justify-center overflow-hidden shrink-0'>
+		{
+			logoImage ? (
+				<Image src={logoImage} alt={customerName ?? ""} class='w-[79px] h-[79px] object-contain' />
+			) : (
+				<span class='font-semibold text-[#013049] text-xl'>{logoText ?? customerName?.substring(0, 2) ?? ""}</span>
+			)
+		}
+	</div>
+	<p class='text-lg leading-[25px] text-justify text-black flex-1' style="font-family: 'Josefin Sans', sans-serif">
+		"{quote}"
+	</p>
 </div>

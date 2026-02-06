@@ -1,0 +1,26 @@
+---
+export interface Props {
+  icon: string;
+  class?: string;
+}
+
+const { icon, class: className = '' } = Astro.props;
+
+const icons = import.meta.glob<string>('../../assets/icons/*.svg', {
+  as: 'raw',
+  eager: true,
+});
+
+const iconKey = Object.keys(icons).find((k) => k.endsWith(`${icon}.svg`));
+const mod = iconKey ? (icons[iconKey] as string) : '';
+let innerHTML = mod ?? '';
+
+if (innerHTML) {
+  innerHTML = innerHTML.replace(/fill="#[0-9A-Fa-f]{3,6}"/g, 'fill="currentColor"');
+  innerHTML = innerHTML.replace(/<svg(\s)/, `<svg class="${className}"$1`);
+}
+
+const styledSVG = innerHTML;
+---
+
+{styledSVG && <Fragment set:html={styledSVG} />}

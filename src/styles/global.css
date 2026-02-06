@@ -1,201 +1,155 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand Colors - Primary */
-  --color-primary: #013049;
-  --color-background: #FBEEE0;
-  --color-body-text: #2E2E2E;
-  
-  /* Brand Colors - Accents */
-  --color-accent-orange: #D66500;
-  --color-accent-green: #043529;
-  --color-accent-yellow: #FFA100;
+	/* Brand Colors - Primary */
+	--color-primary: #013049;
+	--color-background: #fbeee0;
+	--color-body-text: #2e2e2e;
 
-  --color-text-primary-accent: #013000;
-  
-  /* Color Palette - Map to Tailwind's color system */
-  --color-kfood-primary: var(--color-primary);
-  --color-kfood-background: var(--color-background);
-  --color-kfood-body: var(--color-body-text);
-  --color-kfood-orange: var(--color-accent-orange);
-  --color-kfood-green: var(--color-accent-green);
-  --color-kfood-yellow: var(--color-accent-yellow);
-  
-  /* Typography Sizes */
-  --font-size-h1: clamp(32px, 4vw, 48px);
-  --font-size-h2: clamp(24px, 3vw, 36px);
-  --font-size-h3: clamp(20px, 2.5vw, 28px);
-  --font-size-body: clamp(16px, 1.5vw, 20px);
-  
-  /* Spacing Scale */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 3rem;
-  --spacing-xl: 4rem;
-  
-  /* Font Families */
-  --font-family-primary: 'Josefin Sans', sans-serif;
-  --font-family-heading: 'Oswald', sans-serif;
+	/* Brand Colors - Accents */
+	--color-accent-orange: #d66500;
+	--color-accent-green: #043529;
+	--color-accent-yellow: #ffa100;
 
+	--color-text-primary-accent: #013000;
+
+	/* Color Palette - Map to Tailwind's color system */
+	--color-kfood-primary: var(--color-primary);
+	--color-kfood-background: var(--color-background);
+	--color-kfood-body: var(--color-body-text);
+	--color-kfood-orange: var(--color-accent-orange);
+	--color-kfood-green: var(--color-accent-green);
+	--color-kfood-yellow: var(--color-accent-yellow);
+
+	/* Typography Sizes */
+	--font-size-h1: clamp(32px, 4vw, 48px);
+	--font-size-h2: clamp(24px, 3vw, 36px);
+	--font-size-h3: clamp(20px, 2.5vw, 28px);
+	--font-size-body: clamp(16px, 1.5vw, 20px);
+
+	/* Spacing Scale */
+	--spacing-xs: 0.5rem;
+	--spacing-sm: 1rem;
+	--spacing-md: 2rem;
+	--spacing-lg: 3rem;
+	--spacing-xl: 4rem;
+
+	/* Font Families */
+	--font-family-primary: "Josefin Sans", sans-serif;
+	--font-family-heading: "Oswald", sans-serif;
 }
 
 /* Base Styles */
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html {
-  font-size: 16px;
-  scroll-behavior: smooth;
+	font-size: 16px;
+	scroll-behavior: smooth;
 }
 
 body {
-  font-family: var(--font-family-primary);
-  font-size: var(--font-size-body);
-  color: var(--color-body-text);
-  background-color: transparent;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-family: var(--font-family-primary);
+	font-size: var(--font-size-body);
+	color: var(--color-body-text);
+	background-color: transparent;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
-/* Typography */
-h1 {
-  font-size: var(--font-size-h1);
-  font-family: var(--font-family-heading);
-  font-weight: 700;
-  line-height: 1.2;
+.bg-primary {
+	background-color: var(--color-primary);
 }
 
-h2 {
-  font-size: var(--font-size-h2);
-  font-family: var(--font-family-heading);
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--color-primary);
+.bg-background {
+	background-color: var(--color-background);
 }
 
-h3 {
-  font-size: var(--font-size-h3);
-  font-family: var(--font-family-heading);
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--color-body-text);
+.bg-body {
+	background-color: var(--color-body-text);
 }
 
-
-
-/* Links */
-a {
-  color: var(--color-text-primary-accent);
-  text-decoration: none;
-  transition: color 0.2s ease;
-  font-size: 15px;
-  font-weight: 400;
+.bg-accent-orange {
+	background-color: var(--color-accent-orange);
 }
 
-a:hover {
-  color: var(--color-text-primary-accent);
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
+.bg-accent-green {
+	background-color: var(--color-accent-green);
 }
 
-
-.bg-primary{
-  background-color: var(--color-primary);
+.bg-accent-yellow {
+	background-color: var(--color-accent-yellow);
 }
-
-.bg-background{
-  background-color: var(--color-background);
-}
-
-.bg-body{
-  background-color: var(--color-body-text);
-}
-
-.bg-accent-orange{
-  background-color: var(--color-accent-orange);
-}
-
-.bg-accent-green{
-  background-color: var(--color-accent-green);
-}
-
-
-.bg-accent-yellow{
-  background-color: var(--color-accent-yellow);
-}
-
 
 .bg-kfood-primary {
-  background-color: var(--color-kfood-primary);
+	background-color: var(--color-kfood-primary);
 }
 
 .bg-kfood-background {
-  background-color: var(--color-kfood-background);
+	background-color: var(--color-kfood-background);
 }
 
 .bg-kfood-body {
-  background-color: var(--color-kfood-body);
+	background-color: var(--color-kfood-body);
 }
 
 .bg-kfood-orange {
-  background-color: var(--color-kfood-orange);
+	background-color: var(--color-kfood-orange);
 }
 
 .bg-kfood-green {
-  background-color: var(--color-kfood-green);
+	background-color: var(--color-kfood-green);
 }
 
 .bg-kfood-yellow {
-  background-color: var(--color-kfood-yellow);
+	background-color: var(--color-kfood-yellow);
 }
 
 .text-kfood-primary {
-  color: var(--color-kfood-primary);
+	color: var(--color-kfood-primary);
 }
 
 .text-kfood-background {
-  color: var(--color-kfood-background);
+	color: var(--color-kfood-background);
 }
 
 .text-kfood-body {
-  color: var(--color-kfood-body);
+	color: var(--color-kfood-body);
 }
 
 /* Font Utilities */
 .font-Oswald {
-  font-family: 'Oswald', sans-serif;
+	font-family: "Oswald", sans-serif;
 }
 
-
 .btn-primary {
-  /* background-color: var(--color-kfood-primary); */
-  /* color: var(--color-white); */
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: 400;
-  transition: all 0.2s ease;
-  cursor: pointer;
+	/* background-color: var(--color-kfood-primary); */
+	/* color: var(--color-white); */
+	border-radius: 5px;
+	font-size: 1rem;
+	font-weight: 400;
+	transition: all 0.2s ease;
+	cursor: pointer;
 }
 
 .hero-section-text {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  z-index: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: start;
+	padding: 20px;
+	background-color: rgba(255, 255, 255, 0.5);
+	backdrop-filter: blur(10px);
+	border-radius: 10px;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+	z-index: 1;
 }

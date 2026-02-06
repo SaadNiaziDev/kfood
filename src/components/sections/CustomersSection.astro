@@ -1,53 +1,76 @@
 ---
-import SectionHeading from '../ui/SectionHeading.astro';
-import TestimonialCard from '../cards/TestimonialCard.astro';
+import { Image } from "astro:assets";
+import TestimonialCard from "../cards/TestimonialCard.astro";
+import MetroLogo from "../../assets/metro.png";
+import CarrefourLogo from "../../assets/carrefour.png";
+import ImtiazLogo from "../../assets/imtiaz.png";
+import CsdLogo from "../../assets/csd.png";
+import JalalSonsLogo from "../../assets/jalal_sons.png";
+import RainbowLogo from "../../assets/rainbow.png";
 
 const testimonials = [
-  {
-    quote: "K Food has transformed the way we source our ingredients. The quality is exceptional and the farm-to-table approach ensures freshness every time.",
-    customerName: "Metro Foods",
-    logoText: "MF"
-  },
-  {
-    quote: "Working with K Food has been a game-changer for our business. Their commitment to organic products and reliable supply chain is unmatched.",
-    customerName: "Carrefour",
-    logoText: "CF"
-  },
-  {
-    quote: "The transparency and quality standards of K Food products have made them our preferred supplier. Our customers love their organic range.",
-    customerName: "Imtiaz Super Market",
-    logoText: "IM"
-  }
+	{
+		quote:
+			"We work as a catalyst for change, bridging the gap between data-driven research and real-world impact. By understanding the needs of rural communities and combining insights with practical solutions, Waseela develops projects that boost productivity, improve livelihoods, and foster sustainable economic growth.",
+		customerName: "Metro Foods",
+		logoImage: MetroLogo,
+	},
+	{
+		quote:
+			"We work as a catalyst for change, bridging the gap between data-driven research and real-world impact. By understanding the needs of rural communities and combining insights with practical solutions, Waseela develops projects that boost productivity, improve livelihoods, and foster sustainable economic growth.",
+		customerName: "Jalal Sons",
+		logoImage: JalalSonsLogo,
+	},
+	{
+		quote:
+			"We work as a catalyst for change, bridging the gap between data-driven research and real-world impact. By understanding the needs of rural communities and combining insights with practical solutions, Waseela develops projects that boost productivity, improve livelihoods, and foster sustainable economic growth.",
+		customerName: "Carrefour",
+		logoImage: CarrefourLogo,
+	},
 ];
 
 const partnerLogos = [
-  'Al-Fatah', 'Chase Up', 'CSD', 'Makro', 'Imtiaz'
+	{ name: "Jalal Sons", src: JalalSonsLogo },
+	{ name: "Carrefour", src: CarrefourLogo },
+	{ name: "Rainbow", src: RainbowLogo },
+	{ name: "CSD", src: CsdLogo },
+	{ name: "Metro Foods", src: MetroLogo },
+	{ name: "Imtiaz", src: ImtiazLogo },
 ];
 ---
 
-<section class="py-20 bg-white">
-  <div class="container mx-auto px-4">
-    <SectionHeading 
-      title="Our Customers" 
-      subtitle="Trusted by leading retailers across Pakistan"
-    />
-    
-    <div class="grid md:grid-cols-3 gap-8 mb-12">
-      {testimonials.map((testimonial) => (
-        <TestimonialCard 
-          quote={testimonial.quote}
-          customerName={testimonial.customerName}
-          logoText={testimonial.logoText}
-        />
-      ))}
-    </div>
-    
-    <div class="flex flex-wrap justify-center items-center gap-8 pt-8 border-t">
-      {partnerLogos.map((logo) => (
-        <div class="bg-gray-100 px-8 py-4 rounded-lg hover:shadow-md transition-shadow">
-          <span class="font-semibold text-[var(--color-kfood-primary)]">{logo}</span>
-        </div>
-      ))}
-    </div>
-  </div>
+<section class='py-16 lg:py-20 bg-white'>
+	<div class='container mx-auto px-4'>
+		<h2
+			class='text-center text-[#013049] font-medium text-4xl sm:text-[50px] leading-[60px] mb-12 lg:mb-16'
+			style="font-family: 'Oswald', sans-serif">
+			Our Customers
+		</h2>
+
+		<div class='grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-16 lg:mb-20 max-w-6xl mx-auto'>
+			{
+				testimonials.map((testimonial) =>
+					testimonial ? (
+						<TestimonialCard
+							quote={testimonial.quote}
+							customerName={testimonial.customerName}
+							logoImage={testimonial.logoImage}
+						/>
+					) : null,
+				)
+			}
+		</div>
+
+		<div class='flex flex-wrap justify-center items-center gap-8 lg:gap-12 pt-10 border-t border-gray-200'>
+			{
+				partnerLogos.map((partner) =>
+					partner ? (
+						<div class='flex items-center justify-center h-16 lg:h-20 px-6  hover:grayscale-0 opacity-80 hover:opacity-100 transition-all'>
+							{partner.src && <Image src={partner.src} alt={partner.name} class='max-h-full w-auto object-contain' />}
+						</div>
+					) : null,
+				)
+			}
+		</div>
+	</div>
 </section>

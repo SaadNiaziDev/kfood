@@ -1,40 +1,131 @@
 ---
-import SectionHeading from '../ui/SectionHeading.astro';
+import Icon from "../ui/Icon.astro";
 
-const categories = {
-  'OPV': ['Kalabagh', 'Qila Kalabagh', 'D.I Khan', 'Kulachi', 'Mochana', 'Jandola'],
-  'Exports': ['Oman', 'Canada', 'China', 'Dubai', 'Saudi Arabia'],
-  'Pulses': ['Masoor Daal', 'Moong Daal', 'Channa Daal', 'Mash Daal'],
-  'A&C': ['Atta', 'Maida', 'Sooji', 'Chakki Atta', 'Besan', 'Rice']
-};
+const storeTypes = [
+	{ label: "Supermarkets", icon: "Supermarket" },
+	{ label: "Hypermarkets", icon: "Retailers_store" },
+	{ label: "Local Kirana Stores", icon: "store" },
+];
+
+const regions = [
+	{
+		name: "Punjab",
+		cities: [
+			"Lahore",
+			"Faisalabad",
+			"Rawalpindi",
+			"Gujranwala",
+			"Multan",
+			"Sialkot",
+			"Bahawalpur",
+			"Sargodha",
+			"Sheikhupura",
+			"Rahim Yar Khan",
+		],
+	},
+	{
+		name: "KPK",
+		cities: [
+			"Peshawar",
+			"Mardan",
+			"Mingora (Swat)",
+			"Abbottabad",
+			"Kohat",
+			"Dera Ismail Khan",
+			"Bannu",
+			"Swabi",
+			"Nowshera",
+			"Haripur",
+		],
+	},
+	{
+		name: "Sindh",
+		cities: [
+			"Karachi",
+			"Hyderabad",
+			"Sukkur",
+			"Larkana",
+			"Mirpur Khas",
+			"Nawabshah",
+			"Jacobabad",
+			"Shikarpur",
+			"Khairpur",
+		],
+	},
+	{
+		name: "Balochistan & AJK",
+		cities: [
+			"Muzaffarabad",
+			"Turbat",
+			"Khuzdar",
+			"Hub",
+			"Chaman",
+			"Gwadar",
+			"Sibi",
+			"Zhob",
+			"Loralai",
+			"Dera Murad Jamali",
+		],
+	},
+];
 ---
 
-<section class="py-20 bg-gray-50">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-12">
-      <div class="inline-flex items-center justify-center w-20 h-20 bg-[var(--color-kfood-primary)] rounded-full text-white text-4xl mb-4">
-        📍
-      </div>
-      <h2 class="text-4xl font-bold text-[var(--color-kfood-primary)] mb-2">
-        Buy at a Store Near You
-      </h2>
-    </div>
-    
-    <div class="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-      {Object.entries(categories).map(([category, items]) => (
-        <div>
-          <h3 class="font-bold text-[var(--color-kfood-primary)] text-xl mb-4 pb-2 border-b-2 border-[var(--color-kfood-orange)]">
-            {category}
-          </h3>
-          <ul class="space-y-2">
-            {items.map((item) => (
-              <li class="text-gray-700 text-sm hover:text-[var(--color-kfood-orange)] cursor-pointer transition-colors">
-                • {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  </div>
+<section class='py-16 lg:py-20 bg-gray-50'>
+	<div class='container mx-auto px-4'>
+		<h2
+			class='text-center text-[50px] leading-[60px] font-medium text-[#013049] mb-8'
+			style="font-family: 'Oswald', sans-serif">
+			Buy at a Store Near You
+		</h2>
+
+		<div class='flex justify-center mb-10'>
+			<div class='w-[81px] h-[81px] rounded-full bg-[#013049] flex items-center justify-center'>
+				<Icon icon='location_on' class='w-[59px] h-[59px] text-white' />
+			</div>
+		</div>
+
+		<div class='flex flex-wrap justify-center gap-8 lg:gap-16 mb-12'>
+			{
+				storeTypes.map((type) =>
+					type ? (
+						<div class='flex items-center gap-2'>
+							<Icon icon={type.icon} class='w-7 h-7 shrink-0 text-[#D66500]' />
+							<span
+								class='text-[20px] leading-[44px] font-medium text-[#858585]'
+								style="font-family: 'Josefin Sans', sans-serif">
+								{type.label}
+							</span>
+						</div>
+					) : null,
+				)
+			}
+		</div>
+
+		<div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 max-w-6xl mx-auto'>
+			{
+				regions.map((region) =>
+					region ? (
+						<div>
+							<h3
+								class='text-[40px] leading-[60px] font-medium text-black mb-4'
+								style="font-family: 'Oswald', sans-serif">
+								{region.name}
+							</h3>
+							<ul class='space-y-0'>
+								{region.cities.map((city) =>
+									city ? (
+										<li
+											class='text-[25px] leading-[50px] underline text-[#2E2E2E] hover:text-[#D66500] cursor-pointer transition-colors'
+											style="font-family: 'Josefin Sans', sans-serif">
+											{city}
+										</li>
+									) : null,
+								)}
+							</ul>
+						</div>
+					) : null,
+				)
+			}
+		</div>
+	</div>
 </section>

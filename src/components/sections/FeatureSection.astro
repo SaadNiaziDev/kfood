@@ -1,40 +1,58 @@
 ---
-interface Props {
-  title: string;
-  description: string;
-  imagePosition?: 'left' | 'right';
-  backgroundColor?: string;
-  isDark?: boolean;
-}
+import { Image } from "astro:assets";
+import FeatureImage from "../../assets/kitchen.png";
 
-const { 
-  title, 
-  description, 
-  imagePosition = 'left',
-  backgroundColor = 'var(--color-kfood-primary)',
-  isDark = true
-} = Astro.props;
-
-const textColorClass = isDark ? 'text-white' : 'text-[var(--color-kfood-body)]';
-const gridOrder = imagePosition === 'left' ? '' : 'md:flex-row-reverse';
+const features = [
+	{
+		title: "Purely Organic",
+		description:
+			"Every product from Vanalaya is made with 100% certified organic ingredients, ensuring that what reaches you is pure, natural, and free from harmful chemicals.",
+	},
+	{
+		title: "Wholesome Goodness",
+		description:
+			"We combine traditional wisdom with modern quality standards - giving you food and care products that nourish you from within.",
+	},
+	{
+		title: "Sustainably Sourced",
+		description:
+			"From the farms we partner with to the jars we pack, everything is sourced responsibly. We care for your health and the planet alike.",
+	},
+];
 ---
 
-<section class="py-20" style={`background-color: ${backgroundColor}`}>
-  <div class="container mx-auto px-4">
-    <div class={`flex flex-col md:flex-row gap-12 items-center ${gridOrder}`}>
-      <div class="flex-1">
-        <div class="bg-gradient-to-br from-[var(--color-kfood-orange)] to-[var(--color-kfood-yellow)] h-96 rounded-2xl flex items-center justify-center">
-          <div class="text-white text-8xl">🥗</div>
-        </div>
-      </div>
-      
-      <div class={`flex-1 ${textColorClass}`}>
-        <h2 class="text-4xl font-bold mb-6">{title}</h2>
-        <p class="text-lg leading-relaxed mb-6 opacity-90">
-          {description}
-        </p>
-        <slot />
-      </div>
-    </div>
-  </div>
+<section class='relative w-full overflow-hidden min-h-[500px] lg:min-h-[600px] xl:min-h-[925px]'>
+	<div class='absolute inset-0 w-full h-full'>
+		<Image
+			src={FeatureImage}
+			alt='Organic ingredients on kitchen counter'
+			class='w-full h-full object-cover'
+			quality={90}
+		/>
+	</div>
+	<div
+		class='absolute inset-0 w-full h-full'
+		style='background: linear-gradient(90.87deg, rgba(0, 0, 0, 0) 0.73%, #034D6D 99.27%);'
+		aria-hidden='true'>
+	</div>
+	<div class='relative z-10 h-full min-h-[500px] lg:min-h-[600px] xl:min-h-[925px] flex items-center justify-end'>
+		<div class='w-full max-w-xl lg:max-w-[515px] px-6 sm:px-8 lg:px-12 xl:pl-0 xl:pr-24 py-16 space-y-6 lg:space-y-7'>
+			{
+				features.map((feature) =>
+					feature ? (
+						<div class='space-y-2 flex flex-col items-start'>
+							<h3
+								class='text-[40px] leading-[60px] font-medium text-center !text-[#FFA100]'
+								style="font-family: 'Oswald', sans-serif">
+								{feature.title}
+							</h3>
+							<p class='text-xl leading-[25px] text-justify text-white' style="font-family: 'Josefin Sans', sans-serif">
+								{feature.description}
+							</p>
+						</div>
+					) : null,
+				)
+			}
+		</div>
+	</div>
 </section>
