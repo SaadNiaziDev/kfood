@@ -1,7 +1,7 @@
 ---
 interface Props {
 	variant?: "primary" | "secondary" | "accent";
-	size?: "sm" | "md" | "lg" | "strech";
+	size?: "sm" | "md" | "lg" | "stretch";
 	href?: string;
 	class?: string;
 }
@@ -11,16 +11,16 @@ const { variant = "primary", size = "md", href, class: className = "" } = Astro.
 const baseClasses = "font-medium rounded-lg transition-all duration-200 inline-block text-center";
 
 const variantClasses = {
-	primary: "bg-[var(--color-kfood-orange)] text-white hover:bg-[var(--color-kfood-primary)] hover:shadow-lg",
-	secondary: "bg-[var(--color-kfood-green)] text-white hover:opacity-90",
-	accent: "bg-[var(--color-kfood-yellow)] text-[var(--color-kfood-body)] hover:opacity-90",
+	primary: "bg-kfood-orange text-white hover:bg-kfood-primary hover:shadow-lg",
+	secondary: "bg-kfood-green text-white hover:opacity-90",
+	accent: "bg-kfood-yellow text-kfood-body hover:opacity-90",
 };
 
 const sizeClasses = {
 	sm: "px-4 py-2 text-sm",
 	md: "px-6 py-3 text-base",
 	lg: "px-8 py-4 text-lg",
-	strech: "px-6 py-2 w-full",
+	stretch: "px-6 py-2 w-full",
 };
 
 const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;

@@ -4,42 +4,23 @@ import bgImage from "../../assets/BG2 3.png";
 import kisaanStoriesImage from "../../assets/kissan_story.png";
 ---
 
-<section class='kisaan-stories relative min-h-[665px] overflow-hidden bg-[#F9EEE1] py-12 md:py-16'>
+<section class='relative min-h-[400px] overflow-hidden bg-section py-16'>
 	<div class='pointer-events-none absolute right-0 top-0 h-full w-full opacity-[0.05]' aria-hidden='true'>
 		<Image src={bgImage} alt='' class='h-full w-full object-cover object-right' />
 	</div>
 
 	<div
-		class='container relative z-10 mx-auto flex min-h-[440px] flex-col items-center gap-8 px-4 lg:flex-row lg:items-center lg:justify-between lg:gap-12'>
+		class='container relative z-10 mx-auto flex min-h-[300px] md:min-h-[440px] flex-col items-center gap-8 px-4 lg:flex-row lg:items-center lg:justify-between lg:gap-12'>
 		<div class='flex-col justify-center text-center lg:max-w-md lg:text-left'>
-			<h2 class='kisaan-stories-title'>Beyond Our Products</h2>
+			<h2 class='text-heading-section px-4'>Beyond Our Products</h2>
 		</div>
 
-		<div class='kisaan-stories-right flex items-center justify-center gap-4'>
-			<div class='kisaan-card overflow-hidden rounded-[10px] shadow-lg'>
-				<div class='relative w-full overflow-hidden'>
+		<div class='flex items-center justify-center gap-4'>
+			<div class='overflow-hidden rounded-card shadow-lg w-full'>
+				<div class='relative w-full overflow-hidden aspect-video md:aspect-auto md:h-auto'>
 					<Image src={kisaanStoriesImage} alt='Farmers in our supply network' class='h-full w-full object-cover' />
-				</div>
-				<div class='bg-[var(--color-kfood-orange)] px-6 py-4 text-center'>
-					<h3 class='text-2xl font-bold text-white md:text-3xl'>Kisaan Stories</h3>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
-<style>
-	.kisaan-stories-title {
-		font-family: "Oswald", sans-serif;
-		font-weight: 500;
-		font-size: 50px;
-		line-height: 60px;
-		color: #0a3c55;
-	}
-	.kisaan-stories-subtitle {
-		font-family: "Josefin Sans", sans-serif;
-		font-size: 22px;
-		line-height: 28px;
-		color: #717171;
-	}
-</style>

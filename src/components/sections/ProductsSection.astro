@@ -24,38 +24,41 @@ const products = [
 ];
 ---
 
-<section id='products' class='py-5 bg-white'>
+<section id='products' class='py-12 md:py-16 bg-white'>
 	<div class='container mx-auto px-4 flex flex-col items-center'>
 		<SectionHeading title='Products' subtitle='Pure organic products for everyday life' />
 
-		<div class='flex justify-center space-x-8 mb-12'>
+		<div class='flex flex-wrap justify-center gap-4 md:gap-6 lg:gap-8 mb-12'>
 			{
 				categories.map((category) => (
 					<button class='flex flex-col items-center space-y-2 hover:transform hover:-translate-y-1 transition-transform'>
-						<Image src={category.icon} alt={category.label} />
-						<span class='text-sm font-medium text-kfood-body'>{category.label}</span>
+						<Image src={category.icon} alt={category.label} class='w-12 h-12 md:w-16 md:h-16' />
+						<span class='text-xs md:text-sm font-medium text-kfood-body'>{category.label}</span>
 					</button>
 				))
 			}
 		</div>
 
-		<div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+		<div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8'>
 			{
 				products.map((product) => (
 					<div class='flex flex-col items-center space-y-2'>
-						<Image src={product.icon} alt={product.name} />
-						<span class='text-lg font-semibold text-kfood-body'>{product.name}</span>
+						<Image src={product.icon} alt={product.name} class='w-full max-w-[200px] h-auto' />
+						<span class='text-base md:text-lg font-semibold text-kfood-body text-center'>{product.name}</span>
 					</div>
 				))
 			}
 		</div>
 	</div>
 
-	<div class='flex flex-col items-center justify-center space-y-4'>
-		<div class='text-center text-lg font-normal mt-4 p-5 tracking-widest'>
+	<div class='flex flex-col items-center justify-center space-y-4 px-4'>
+		<div class='text-center text-base md:text-lg font-normal mt-4 tracking-wide md:tracking-widest font-body max-w-2xl'>
 			Discover a curated selection of KFood products available to shop online.
 		</div>
-		<Button variant='primary' size='lg' class='btn-primary bg-kfood-primary hover:bg-kfood-primary/90 !text-[30px]'>
+		<Button
+			variant='primary'
+			size='lg'
+			class='!bg-kfood-primary !text-white !border-none !text-xl md:text-2xl lg:text-[30px]'>
 			Shop Now
 		</Button>
 	</div>

@@ -11,22 +11,18 @@ interface Props {
 const { number, label, icon, class: className = '' } = Astro.props;
 ---
 
-<div class={`rounded-[21px] bg-white p-6 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:transform ${className}`}>
-  <div class="mb-4 flex h-[68px] items-center justify-center">
+<div class={`rounded-card-lg bg-white p-4 md:p-6 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:transform ${className}`}>
+  <div class="mb-3 md:mb-4 flex h-[50px] md:h-[68px] items-center justify-center">
     {icon ? (
-      <div class="flex h-[68px] w-[68px] items-center justify-center rounded-full bg-[#F8F2EC]">
-        <Icon icon={icon} class="h-10 w-10 text-[var(--color-kfood-primary)]" />
+      <div class="flex h-[50px] w-[50px] md:h-[68px] md:w-[68px] items-center justify-center rounded-full bg-section-alt">
+        <Icon icon={icon} class="h-8 w-8 md:h-10 md:w-10 text-kfood-primary" />
       </div>
     ) : null}
   </div>
-  <div
-    class="mb-2 font-medium text-[#013049]"
-    style="font-family: 'Oswald', sans-serif; font-size: 50px; line-height: 60px;">
-    {number}<span class="text-[var(--color-kfood-orange)]">+</span>
+  <div class="mb-2 text-heading-section">
+    {number}<span class="text-kfood-orange">+</span>
   </div>
-  <p
-    class="text-center font-normal text-[#717171]"
-    style="font-family: 'Josefin Sans', sans-serif; font-size: 22px; line-height: 28px;">
+  <p class="text-body-lg text-center text-sm md:text-base">
     {label}
   </p>
 </div>

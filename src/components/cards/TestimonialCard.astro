@@ -14,18 +14,18 @@ const { quote, customerName, logoText, logoImage, class: className = "" } = Astr
 ---
 
 <div
-	class={`relative bg-white border border-[#034D6D] rounded-[21px] pt-14 pb-6 px-6 flex flex-col min-h-[349px] w-full max-w-[376px] mx-auto md:mx-0 ${className}`}>
+	class={`relative bg-white border border-kfood-green rounded-card-lg pt-14 pb-6 px-6 flex flex-col min-h-[349px] w-full max-w-[376px] mx-auto md:mx-0 ${className}`}>
 	<div
-		class='absolute left-1/2 -translate-x-1/2 -top-14 w-[111px] h-[111px] rounded-full bg-[#F8F2EC] flex items-center justify-center overflow-hidden shrink-0'>
+		class='absolute left-1/2 -translate-x-1/2 -top-14 w-[111px] h-[111px] rounded-full bg-section-alt flex items-center justify-center overflow-hidden shrink-0'>
 		{
 			logoImage ? (
 				<Image src={logoImage} alt={customerName ?? ""} class='w-[79px] h-[79px] object-contain' />
 			) : (
-				<span class='font-semibold text-[#013049] text-xl'>{logoText ?? customerName?.substring(0, 2) ?? ""}</span>
+				<span class='font-semibold text-kfood-primary text-xl'>{logoText ?? customerName?.substring(0, 2) ?? ""}</span>
 			)
 		}
 	</div>
-	<p class='text-lg leading-[25px] text-justify text-black flex-1' style="font-family: 'Josefin Sans', sans-serif">
+	<p class='text-lg leading-[25px] text-justify text-black flex-1 font-body'>
 		"{quote}"
 	</p>
 </div>

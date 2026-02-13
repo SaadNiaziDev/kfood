@@ -21,11 +21,29 @@
 	--color-kfood-green: var(--color-accent-green);
 	--color-kfood-yellow: var(--color-accent-yellow);
 
+	/* Section Backgrounds */
+	--color-section-bg: #f9eee1;
+	--color-section-bg-alt: #f8f2ec;
+
+	/* Typography Colors */
+	--color-heading: #0a3c55;
+	--color-muted: #717171;
+
 	/* Typography Sizes */
 	--font-size-h1: clamp(32px, 4vw, 48px);
 	--font-size-h2: clamp(24px, 3vw, 36px);
 	--font-size-h3: clamp(20px, 2.5vw, 28px);
 	--font-size-body: clamp(16px, 1.5vw, 20px);
+	--font-size-heading-section: 50px;
+	--font-size-heading-feature: 40px;
+	--font-size-body-lg: 22px;
+	--font-size-body-md: 20px;
+	--font-size-body-sm: 18px;
+
+	/* Typography Line Heights */
+	--line-height-heading-section: 60px;
+	--line-height-body-lg: 28px;
+	--line-height-body-md: 30px;
 
 	/* Spacing Scale */
 	--spacing-xs: 0.5rem;
@@ -33,6 +51,15 @@
 	--spacing-md: 2rem;
 	--spacing-lg: 3rem;
 	--spacing-xl: 4rem;
+
+	/* Border Radius */
+	--radius-card: 10px;
+	--radius-card-lg: 21px;
+	--radius-button: 7px;
+
+	/* Section Heights */
+	--section-min-height-sm: 523px;
+	--section-min-height-md: 665px;
 
 	/* Font Families */
 	--font-family-primary: "Josefin Sans", sans-serif;
@@ -121,9 +148,84 @@ body {
 	color: var(--color-kfood-body);
 }
 
+/* Section Background Utilities */
+.bg-section {
+	background-color: var(--color-section-bg);
+}
+
+.bg-section-alt {
+	background-color: var(--color-section-bg-alt);
+}
+
+/* Typography Color Utilities */
+.text-heading {
+	color: var(--color-heading);
+}
+
+.text-muted {
+	color: var(--color-muted);
+}
+
 /* Font Utilities */
 .font-Oswald {
 	font-family: "Oswald", sans-serif;
+}
+
+.font-heading {
+	font-family: var(--font-family-heading);
+}
+
+.font-body {
+	font-family: var(--font-family-primary);
+}
+
+/* Typography Component Classes */
+.text-heading-section {
+	font-family: var(--font-family-heading);
+	font-size: clamp(32px, 6vw, 50px);
+	line-height: 1.2;
+	font-weight: 500;
+	color: var(--color-heading);
+}
+
+.text-heading-feature {
+	font-family: var(--font-family-heading);
+	font-size: clamp(28px, 5vw, 40px);
+	line-height: 1.2;
+	font-weight: 500;
+	color: var(--color-heading);
+}
+
+.text-body-lg {
+	font-family: var(--font-family-primary);
+	font-size: clamp(16px, 3vw, 22px);
+	line-height: 1.4;
+	color: var(--color-muted);
+}
+
+.text-body-md {
+	font-family: var(--font-family-primary);
+	font-size: clamp(16px, 2.5vw, 20px);
+	line-height: 1.5;
+}
+
+.text-body-sm {
+	font-family: var(--font-family-primary);
+	font-size: clamp(14px, 2vw, 18px);
+	line-height: 1.5;
+}
+
+/* Border Radius Utilities */
+.rounded-card {
+	border-radius: var(--radius-card);
+}
+
+.rounded-card-lg {
+	border-radius: var(--radius-card-lg);
+}
+
+.rounded-button {
+	border-radius: var(--radius-button);
 }
 
 .btn-primary {
@@ -134,6 +236,13 @@ body {
 	font-weight: 400;
 	transition: all 0.2s ease;
 	cursor: pointer;
+}
+
+.btn-primary:hover {
+	opacity: 0.9 !important;
+	transition: all 0.2s ease !important;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1) !important;
+	transform: translateY(-2px) !important;
 }
 
 .hero-section-text {

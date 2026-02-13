@@ -13,7 +13,7 @@ const stats = [
 ];
 ---
 
-<section class="relative min-h-[523px] overflow-hidden bg-[#F8F2EC] py-12 md:py-16">
+<section class="relative min-h-[400px] md:min-h-[523px] overflow-hidden bg-section-alt py-12 md:py-16">
 	<div
 		class="pointer-events-none absolute right-0 top-0 h-full w-full max-w-[1441px] opacity-[0.05]"
 		aria-hidden="true">
@@ -25,14 +25,14 @@ const stats = [
 	</div>
 
 	<div class="container relative z-10 mx-auto px-4">
-		<div class="network-trust-heading mb-12">
+		<div class="mb-8 md:mb-12">
 			<SectionHeading
 				title="Network you can trust"
 				subtitle="With decades of agricultural expertise, Kfood brings you a promise of quality and nutrition in every product"
 			/>
 		</div>
 
-		<div class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
+		<div class="grid grid-cols-2 gap-4 md:gap-6 md:grid-cols-3 lg:grid-cols-5">
 			{stats.map((stat) =>
 				stat ? (
 					<StatCard number={stat.number} label={stat.label} icon={stat.icon} />
@@ -41,17 +41,3 @@ const stats = [
 		</div>
 	</div>
 </section>
-
-<style>
-	:global(.network-trust-heading h2) {
-		font-family: "Oswald", sans-serif;
-		font-size: 50px;
-		line-height: 60px;
-		color: #013049;
-	}
-	:global(.network-trust-heading p) {
-		font-size: 22px;
-		line-height: 22px;
-		color: #717171;
-	}
-</style>
