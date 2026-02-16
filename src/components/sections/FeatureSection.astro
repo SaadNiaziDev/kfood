@@ -21,7 +21,7 @@ const features = [
 ];
 ---
 
-<section class='relative w-full overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[925px]'>
+<section class='feature-section relative w-full overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[925px]'>
 	<div class='absolute inset-0 w-full h-full'>
 		<Image
 			src={FeatureImage}
@@ -35,16 +35,17 @@ const features = [
 		style='background: linear-gradient(90.87deg, rgba(0, 0, 0, 0.3) 0%, #034D6D 99.27%);'
 		aria-hidden='true'>
 	</div>
+	<div class='feature-section__bg-panel' aria-hidden='true' />
 	<div class='container mx-auto w-full'>
 		<div
 			class='relative z-10 h-full min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[925px] flex items-center justify-center md:justify-end'>
-			<div class='w-full lg:max-w-[515px] px-6 sm:px-8 lg:px-12 xl:pl-0 xl:pr-24 py-12 md:py-16 space-y-6 lg:space-y-7'>
+			<div class='feature-section__content w-full lg:max-w-[515px] px-[31px] sm:px-8 lg:px-12 xl:pl-0 xl:pr-24 py-12 md:py-16 space-y-6 lg:space-y-7'>
 				{
 					features.map((feature) =>
 						feature ? (
-							<div class='space-y-3 flex flex-col items-start'>
-								<h3 class='text-heading-feature !text-kfood-yellow'>{feature.title}</h3>
-								<p class='text-base md:text-lg lg:text-xl leading-relaxed text-left md:text-justify text-white font-body'>
+							<div class='feature-section__item space-y-3 flex flex-col items-start md:items-start'>
+								<h3 class='text-heading-feature !text-kfood-yellow feature-section__title'>{feature.title}</h3>
+								<p class='text-base md:text-lg lg:text-xl leading-relaxed text-left md:text-justify text-white font-body feature-section__desc'>
 									{feature.description}
 								</p>
 							</div>
@@ -55,3 +56,53 @@ const features = [
 		</div>
 	</div>
 </section>
+
+<style>
+	.feature-section__bg-panel {
+		display: none;
+	}
+
+	@media (max-width: 767px) {
+		.feature-section__bg-panel {
+			display: block;
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			background: #f8f2ec;
+			opacity: 0.08;
+			pointer-events: none;
+			z-index: 1;
+		}
+
+		.feature-section__content {
+			max-width: 331px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.feature-section__item {
+			align-items: center;
+		}
+
+		.feature-section__title {
+			font-family: "Oswald", sans-serif;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 20px;
+			line-height: 60px;
+			text-align: center;
+			color: #ffa100;
+		}
+
+		.feature-section__desc {
+			font-family: "Josefin Sans", sans-serif;
+			font-style: normal;
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 18px;
+			text-align: justify;
+			color: #ffffff;
+		}
+	}
+</style>

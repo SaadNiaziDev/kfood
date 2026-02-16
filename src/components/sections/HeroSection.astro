@@ -10,9 +10,9 @@ const bannerMobile: ImageMetadata = BannerMobile;
 
 <section class='relative w-full h-auto overflow-hidden'>
 	<!-- Background Image -->
-	<div class='absolute inset-0 z-0'>
+	<div class='absolute inset-0 z-0 min-h-[600px] md:min-h-0'>
 		<img src={banner.src} alt='Hero Section' class='w-full h-full object-cover hidden md:block' />
-		<img src={bannerMobile.src} alt='Hero Section' class='w-full object-contain block md:hidden' />
+		<img src={bannerMobile.src} alt='Hero Section' class='w-full h-full object-cover block md:hidden' />
 
 		<!-- Dark overlay for better text readability -->
 		<div class='absolute inset-0 bg-black/30'></div>
@@ -31,13 +31,16 @@ const bannerMobile: ImageMetadata = BannerMobile;
 
 			<!-- Buttons -->
 			<div class='flex flex-col sm:flex-row gap-4 mt-6'>
-				<Button variant='primary' size='stretch' class='!bg-kfood-orange !text-white !border-none'>
+				<Button
+					variant='primary'
+					size='stretch'
+					class='!btn-cta hover:!cursor-pointer !bg-kfood-orange !text-white !border-none'>
 					Shop Online
 				</Button>
 				<Button
 					variant='accent'
 					size='stretch'
-					class='!bg-white !text-kfood-primary !border-2 !border-kfood-primary hover:!bg-gray-100'>
+					class='!bg-white !btn-cta hover:!cursor-pointer !text-kfood-primary !border-2 !border-kfood-primary hover:!bg-gray-100'>
 					Find a Store
 				</Button>
 			</div>

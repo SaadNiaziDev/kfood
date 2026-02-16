@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import bgImage from "../../assets/BG2 3.png";
 import kisaanStoriesImage from "../../assets/kissan_story.png";
 import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext } from "astro-swiper";
+import { ChevronLeftIcon, ChevronRightIcon } from "@lucide/astro";
 
 const banners = [
 	{ image: kisaanStoriesImage, alt: "Farmers in our supply network", href: "#", title: "Kisaan Stories" },
@@ -17,7 +18,7 @@ const banners = [
 	</div>
 
 	<div class='container relative z-10 mx-auto'>
-		<div class='flex items-center justify-between'>
+		<div class='flex items-center flex-col md:flex-row justify-between'>
 			<div class='shrink-0 text-center md:text-center'>
 				<h2 class='text-heading-section'>Beyond <br class='hidden md:block' /> Our Products</h2>
 			</div>
@@ -26,13 +27,17 @@ const banners = [
 				<Swiper
 					uniqueClass='kisaan-swiper'
 					useCustomElement={false}
+					addDefaultClass={false}
 					options={{
 						slidesPerView: 1,
-						spaceBetween: 0,
+						slidesPerGroup: 1,
+						spaceBetween: 24,
 						loop: true,
-						navigation: true,
+						navigation: {
+							nextEl: ".kisaan-swiper .swiper-button-next",
+							prevEl: ".kisaan-swiper .swiper-button-prev",
+						},
 						autoplay: { delay: 4000, disableOnInteraction: false },
-						watchOverflow: true,
 					}}>
 					<SwiperWrapper>
 						{
@@ -45,8 +50,12 @@ const banners = [
 							))
 						}
 					</SwiperWrapper>
-					<SwiperButtonPrev />
-					<SwiperButtonNext />
+					<SwiperButtonPrev addDefaultClass={true} class='!text-black'>
+						<ChevronLeftIcon class='w-6 h-6' />
+					</SwiperButtonPrev>
+					<SwiperButtonNext addDefaultClass={true} class='!text-black'>
+						<ChevronRightIcon class='w-6 h-6' />
+					</SwiperButtonNext>
 				</Swiper>
 			</div>
 		</div>
@@ -126,13 +135,5 @@ const banners = [
 	}
 	.kisaan-carousel :global(.swiper-button-disabled) {
 		opacity: 0.3;
-	}
-
-	/* Hide arrows on mobile since card is full-width */
-	@media (max-width: 767px) {
-		.kisaan-carousel :global(.swiper-button-prev),
-		.kisaan-carousel :global(.swiper-button-next) {
-			display: none;
-		}
 	}
 </style>

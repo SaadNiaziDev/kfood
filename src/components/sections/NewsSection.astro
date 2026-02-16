@@ -4,6 +4,7 @@ import NewsCard from "../cards/NewsCard.astro";
 import bg2Image from "../../assets/BG2 4.png";
 import articleImage from "../../assets/article.png";
 import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext } from "astro-swiper";
+import { ChevronLeftIcon, ChevronRightIcon } from "@lucide/astro";
 
 const news = [
 	{
@@ -35,9 +36,10 @@ const news = [
 		image: articleImage,
 	},
 ];
+const newsForSwiper = [...news, ...news];
 ---
 
-<section id='news' class='relative py-20 overflow-hidden bg-primary'>
+<section id='news-section' class='relative py-20 overflow-hidden bg-primary'>
 	<div class='absolute inset-0 w-full h-full opacity-40 pointer-events-none overflow-hidden' aria-hidden='true'>
 		<Image src={bg2Image} alt='' class='w-full h-full object-cover object-center' quality={100} />
 	</div>
@@ -55,18 +57,21 @@ const news = [
 				useCustomElement={false}
 				options={{
 					slidesPerView: 1,
+					slidesPerGroup: 1,
 					spaceBetween: 24,
 					loop: true,
-					navigation: true,
+					navigation: {
+						nextEl: ".news-swiper .swiper-button-next",
+						prevEl: ".news-swiper .swiper-button-prev",
+					},
 					breakpoints: {
-						640: { slidesPerView: 2 },
-						1024: { slidesPerView: 4 },
+						640: { slidesPerView: 2, slidesPerGroup: 1 },
+						1024: { slidesPerView: 4, slidesPerGroup: 1 },
 					},
 				}}>
-				<SwiperButtonPrev />
 				<SwiperWrapper>
 					{
-						news?.map((article) =>
+						newsForSwiper.map((article) =>
 							article ? (
 								<SwiperSlide>
 									<NewsCard
@@ -81,7 +86,12 @@ const news = [
 						)
 					}
 				</SwiperWrapper>
-				<SwiperButtonNext />
+				<SwiperButtonPrev addDefaultClass={true} class='!text-white'>
+					<ChevronLeftIcon class='w-6 h-6 text-white' />
+				</SwiperButtonPrev>
+				<SwiperButtonNext addDefaultClass={true} class='!text-white'>
+					<ChevronRightIcon class='w-6 h-6 text-white' />
+				</SwiperButtonNext>
 			</Swiper>
 		</div>
 	</div>

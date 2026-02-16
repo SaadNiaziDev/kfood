@@ -1,9 +1,22 @@
 ---
 import Logo from "../../assets/logo.png";
 import type { ImageMetadata } from "astro";
-import { Search, Menu, X } from "@lucide/astro";
+import { Search, Menu, X, ChevronDown } from "@lucide/astro";
 
 const logo: ImageMetadata = Logo;
+
+const productCategories = [
+	{ label: "Butter", href: "#products" },
+	{ label: "Flour", href: "#products" },
+	{ label: "Milk", href: "#products" },
+	{ label: "Yogurt", href: "#products" },
+	{ label: "Ghee", href: "#products" },
+];
+
+const brandLinks = [
+	{ label: "Network & Trust", href: "#network-trust" },
+	{ label: "Our Customers", href: "#customers" },
+];
 ---
 
 <header class='sticky top-0 z-50'>
@@ -16,38 +29,89 @@ const logo: ImageMetadata = Logo;
 
 		<div>
 			<ul class='hidden items-center gap-6 lg:flex xl:gap-8 text-[15px] leading-[15px] text-kfood-primary'>
-				<li><a href='/' class='hover:opacity-80 transition-opacity'>Home</a></li>
-				<li><a href='#about-kfood' class='hover:opacity-80 transition-opacity'>About KFood</a></li>
-				<li class='flex items-center gap-0.5'>
-					<a href='#products' class='hover:opacity-80 transition-opacity'>Products</a>
-					<svg
-						class='h-5 w-5 shrink-0 text-kfood-primary'
-						viewBox='0 0 24 24'
-						fill='none'
-						stroke='currentColor'
-						stroke-width='2'
-						aria-hidden='true'><path d='M6 9l6 6 6-6'></path></svg
-					>
+				<li><a href='/' class='hover:opacity-80 transition-opacity cursor-pointer'>Home</a></li>
+				<li><a href='#about-kfood' class='hover:opacity-80 transition-opacity cursor-pointer'>About KFood</a></li>
+				<li class='relative' id='products-nav-item'>
+					<button
+						type='button'
+						class='flex items-center gap-0.5 hover:opacity-80 transition-opacity bg-transparent border-none cursor-pointer text-inherit text-[15px] leading-[15px] font-inherit p-0'
+						aria-expanded='false'
+						aria-haspopup='true'
+						aria-controls='products-dropdown'
+						id='products-trigger'>
+						Products
+						<ChevronDown class='h-5 w-5 shrink-0 text-kfood-primary transition-transform' id='products-chevron' />
+					</button>
+					<ul
+						id='products-dropdown'
+						class='absolute left-0 top-full pt-2 hidden min-w-[160px] list-none'
+						aria-hidden='true'>
+						<li>
+							<ul class='bg-kfood-background border border-gray-200 rounded-lg shadow-lg overflow-hidden list-none'>
+								<li>
+									<a href='#products' class='block px-4 py-2.5 text-kfood-primary hover:bg-gray-100 cursor-pointer'
+										>View all</a
+									>
+								</li>
+								{
+									productCategories.map((cat) =>
+										cat ? (
+											<li>
+												<a
+													href={cat.href}
+													class='block px-4 py-2.5 text-kfood-primary hover:bg-gray-100 cursor-pointer'>
+													{cat.label}
+												</a>
+											</li>
+										) : null,
+									)
+								}
+							</ul>
+						</li>
+					</ul>
 				</li>
-				<li class='flex items-center gap-0.5'>
-					<a href='#network-trust' class='hover:opacity-80 transition-opacity'>Our Brands</a>
-					<svg
-						class='h-5 w-5 shrink-0 text-kfood-primary'
-						viewBox='0 0 24 24'
-						fill='none'
-						stroke='currentColor'
-						stroke-width='2'
-						aria-hidden='true'><path d='M6 9l6 6 6-6'></path></svg
-					>
+				<li class='relative' id='brands-nav-item'>
+					<button
+						type='button'
+						class='flex items-center gap-0.5 hover:opacity-80 transition-opacity bg-transparent border-none cursor-pointer text-inherit text-[15px] leading-[15px] font-inherit p-0'
+						aria-expanded='false'
+						aria-haspopup='true'
+						aria-controls='brands-dropdown'
+						id='brands-trigger'>
+						Our Brands
+						<ChevronDown class='h-5 w-5 shrink-0 text-kfood-primary transition-transform' id='brands-chevron' />
+					</button>
+					<ul
+						id='brands-dropdown'
+						class='absolute left-0 top-full pt-2 hidden min-w-[160px] list-none'
+						aria-hidden='true'>
+						<li>
+							<ul class='bg-kfood-background border border-gray-200 rounded-lg shadow-lg overflow-hidden list-none'>
+								{
+									brandLinks.map((item) =>
+										item ? (
+											<li>
+												<a
+													href={item.href}
+													class='block px-4 py-2.5 text-kfood-primary hover:bg-gray-100 cursor-pointer'>
+													{item.label}
+												</a>
+											</li>
+										) : null,
+									)
+								}
+							</ul>
+						</li>
+					</ul>
 				</li>
-				<li><a href='#careers' class='hover:opacity-80 transition-opacity'>Careers</a></li>
-				<li><a href='#store-locator' class='hover:opacity-80 transition-opacity'>Find a Store</a></li>
-				<li><a href='#partner-form' class='hover:opacity-80 transition-opacity'>Partnerships</a></li>
-				<li><a href='#news-section' class='hover:opacity-80 transition-opacity'>News</a></li>
+				<li><a href='#careers' class='hover:opacity-80 transition-opacity cursor-pointer'>Careers</a></li>
+				<li><a href='#store-locator' class='hover:opacity-80 transition-opacity cursor-pointer'>Find a Store</a></li>
+				<li><a href='#partner-form' class='hover:opacity-80 transition-opacity cursor-pointer'>Partnerships</a></li>
+				<li><a href='#news-section' class='hover:opacity-80 transition-opacity cursor-pointer'>News</a></li>
 				<li>
 					<a
 						href='#'
-						class='rounded-button bg-kfood-orange px-5 py-2.5 text-white transition-opacity hover:opacity-90 text-body-sm'>
+						class='rounded-button bg-kfood-orange px-5 py-2.5 text-white transition-opacity hover:opacity-90 text-body-sm cursor-pointer'>
 						Shop Online
 					</a>
 				</li>
@@ -55,7 +119,11 @@ const logo: ImageMetadata = Logo;
 		</div>
 
 		<div class='hidden lg:flex items-center gap-6'>
-			<button type='button' class='flex items-center justify-center text-kfood-primary' aria-label='Search'>
+			<button
+				type='button'
+				id='search-open-btn'
+				class='flex items-center justify-center text-kfood-primary hover:opacity-80 transition-opacity cursor-pointer'
+				aria-label='Open search'>
 				<Search class='h-6 w-6' />
 			</button>
 		</div>
@@ -63,31 +131,115 @@ const logo: ImageMetadata = Logo;
 		<button
 			type='button'
 			id='mobile-menu-button'
-			class='lg:hidden flex items-center justify-center text-kfood-primary'
+			class='lg:hidden flex items-center justify-center text-kfood-primary cursor-pointer'
 			aria-label='Toggle menu'>
 			<Menu class='h-7 w-7' id='menu-icon' />
 			<X class='h-7 w-7 hidden' id='close-icon' />
 		</button>
 	</nav>
 
+	<div
+		id='search-overlay'
+		class='hidden absolute inset-x-0 top-full z-40 bg-kfood-background border-b border-gray-200 shadow-md'>
+		<div class='px-4 md:px-10 py-4 flex items-center gap-3 max-w-3xl mx-auto'>
+			<input
+				type='search'
+				id='search-input'
+				placeholder='Search products...'
+				class='flex-1 px-4 py-3 border border-gray-300 rounded-lg text-kfood-primary placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-kfood-primary focus:border-transparent'
+				aria-label='Search'
+			/>
+			<button
+				type='button'
+				id='search-close-btn'
+				class='p-2 text-kfood-primary hover:opacity-80 transition-opacity rounded-lg cursor-pointer'
+				aria-label='Close search'>
+				<X class='h-6 w-6' />
+			</button>
+		</div>
+	</div>
+
 	<div id='mobile-menu' class='hidden lg:hidden bg-kfood-background border-t border-gray-200'>
-		<ul class='flex flex-col py-4 px-4 space-y-3 text-kfood-primary font-body'>
-			<li><a href='/' class='block py-2 hover:opacity-80 transition-opacity'>Home</a></li>
-			<li><a href='#about-kfood' class='block py-2 hover:opacity-80 transition-opacity'>About KFood</a></li>
-			<li><a href='#products' class='block py-2 hover:opacity-80 transition-opacity'>Products</a></li>
-			<li><a href='#network-trust' class='block py-2 hover:opacity-80 transition-opacity'>Our Brands</a></li>
-			<li><a href='#careers' class='block py-2 hover:opacity-80 transition-opacity'>Careers</a></li>
-			<li><a href='#store-locator' class='block py-2 hover:opacity-80 transition-opacity'>Find a Store</a></li>
-			<li><a href='#partner-form' class='block py-2 hover:opacity-80 transition-opacity'>Partnerships</a></li>
-			<li><a href='#news-section' class='block py-2 hover:opacity-80 transition-opacity'>News</a></li>
-			<li class='pt-2 border-t border-gray-200'>
+		<div class='py-4 px-4 space-y-1 text-kfood-primary font-body'>
+			<button
+				type='button'
+				id='mobile-search-btn'
+				class='flex items-center gap-2 w-full py-2.5 hover:opacity-80 transition-opacity text-left text-[15px] cursor-pointer'>
+				<Search class='h-5 w-5 shrink-0' />
+				<span>Search</span>
+			</button>
+			<div id='mobile-search-bar' class='hidden pb-3'>
+				<input
+					type='search'
+					id='mobile-search-input'
+					placeholder='Search products...'
+					class='w-full px-4 py-3 border border-gray-300 rounded-lg text-kfood-primary placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-kfood-primary'
+					aria-label='Search'
+				/>
+			</div>
+			<a href='/' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Home</a>
+			<a href='#about-kfood' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>About KFood</a>
+			<div class='border-t border-gray-100'>
+				<button
+					type='button'
+					id='mobile-products-toggle'
+					class='flex items-center justify-between w-full py-2.5 hover:opacity-80 transition-opacity text-left text-[15px] cursor-pointer'
+					aria-expanded='false'
+					aria-controls='mobile-products-list'>
+					<span>Products</span>
+					<ChevronDown class='h-5 w-5 shrink-0 transition-transform' id='mobile-products-chevron' />
+				</button>
+				<ul id='mobile-products-list' class='hidden pl-4 space-y-0 pb-2'>
+					<li><a href='#products' class='block py-1.5 hover:opacity-80 cursor-pointer'>View all</a></li>
+					{
+						productCategories.map((cat) =>
+							cat ? (
+								<li>
+									<a href={cat.href} class='block py-1.5 hover:opacity-80 cursor-pointer'>
+										{cat.label}
+									</a>
+								</li>
+							) : null,
+						)
+					}
+				</ul>
+			</div>
+			<div class='border-t border-gray-100'>
+				<button
+					type='button'
+					id='mobile-brands-toggle'
+					class='flex items-center justify-between w-full py-2.5 hover:opacity-80 transition-opacity text-left text-[15px] cursor-pointer'
+					aria-expanded='false'
+					aria-controls='mobile-brands-list'>
+					<span>Our Brands</span>
+					<ChevronDown class='h-5 w-5 shrink-0 transition-transform' id='mobile-brands-chevron' />
+				</button>
+				<ul id='mobile-brands-list' class='hidden pl-4 space-y-0 pb-2'>
+					{
+						brandLinks.map((item) =>
+							item ? (
+								<li>
+									<a href={item.href} class='block py-1.5 hover:opacity-80 cursor-pointer'>
+										{item.label}
+									</a>
+								</li>
+							) : null,
+						)
+					}
+				</ul>
+			</div>
+			<a href='#careers' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Careers</a>
+			<a href='#store-locator' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Find a Store</a>
+			<a href='#partner-form' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Partnerships</a>
+			<a href='#news-section' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>News</a>
+			<div class='pt-2 border-t border-gray-200'>
 				<a
 					href='#'
-					class='block w-full rounded-button bg-kfood-primary px-5 py-2.5 text-white text-center transition-opacity hover:opacity-90'>
+					class='block w-full rounded-button bg-kfood-orange px-5 py-2.5 text-white text-center transition-opacity hover:opacity-90 cursor-pointer'>
 					Shop Online
 				</a>
-			</li>
-		</ul>
+			</div>
+		</div>
 	</div>
 </header>
 
@@ -97,6 +249,12 @@ const logo: ImageMetadata = Logo;
 	const menuIcon = document.getElementById("menu-icon");
 	const closeIcon = document.getElementById("close-icon");
 
+	function closeMobileMenu() {
+		mobileMenu?.classList.add("hidden");
+		menuIcon?.classList.remove("hidden");
+		closeIcon?.classList.add("hidden");
+	}
+
 	menuButton?.addEventListener("click", () => {
 		mobileMenu?.classList.toggle("hidden");
 		menuIcon?.classList.toggle("hidden");
@@ -105,10 +263,120 @@ const logo: ImageMetadata = Logo;
 
 	const mobileLinks = mobileMenu?.querySelectorAll("a");
 	mobileLinks?.forEach((link) => {
-		link.addEventListener("click", () => {
-			mobileMenu?.classList.add("hidden");
-			menuIcon?.classList.remove("hidden");
-			closeIcon?.classList.add("hidden");
-		});
+		link.addEventListener("click", closeMobileMenu);
+	});
+
+	const searchOverlay = document.getElementById("search-overlay");
+	const searchOpenBtn = document.getElementById("search-open-btn");
+	const searchCloseBtn = document.getElementById("search-close-btn");
+	const searchInput = document.getElementById("search-input");
+
+	function openSearch() {
+		searchOverlay?.classList.remove("hidden");
+		(searchInput as HTMLInputElement)?.focus();
+	}
+
+	function closeSearch() {
+		searchOverlay?.classList.add("hidden");
+		(searchInput as HTMLInputElement).value = "";
+	}
+
+	searchOpenBtn?.addEventListener("click", openSearch);
+	searchCloseBtn?.addEventListener("click", closeSearch);
+
+	document.addEventListener("click", (e: MouseEvent) => {
+		const target = e.target as Node;
+		if (
+			searchOverlay &&
+			!searchOverlay.contains(target) &&
+			!searchOpenBtn?.contains(target) &&
+			!searchOverlay.classList.contains("hidden")
+		) {
+			closeSearch();
+		}
+	});
+
+	const mobileSearchBtn = document.getElementById("mobile-search-btn");
+	const mobileSearchBar = document.getElementById("mobile-search-bar");
+	const mobileSearchInput = document.getElementById("mobile-search-input");
+
+	mobileSearchBtn?.addEventListener("click", () => {
+		mobileSearchBar?.classList.toggle("hidden");
+		if (!mobileSearchBar?.classList.contains("hidden")) {
+			(mobileSearchInput as HTMLInputElement)?.focus();
+		}
+	});
+
+	const mobileProductsToggle = document.getElementById("mobile-products-toggle");
+	const mobileProductsList = document.getElementById("mobile-products-list");
+	const mobileProductsChevron = document.getElementById("mobile-products-chevron");
+
+	mobileProductsToggle?.addEventListener("click", () => {
+		const isHidden = mobileProductsList?.classList.toggle("hidden") ?? true;
+		mobileProductsToggle.setAttribute("aria-expanded", String(!isHidden));
+		mobileProductsChevron?.classList.toggle("rotate-180", !isHidden);
+		mobileBrandsList?.classList.add("hidden");
+		mobileBrandsToggle?.setAttribute("aria-expanded", "false");
+		mobileBrandsChevron?.classList.remove("rotate-180");
+	});
+
+	const mobileBrandsToggle = document.getElementById("mobile-brands-toggle");
+	const mobileBrandsList = document.getElementById("mobile-brands-list");
+	const mobileBrandsChevron = document.getElementById("mobile-brands-chevron");
+
+	mobileBrandsToggle?.addEventListener("click", () => {
+		const isHidden = mobileBrandsList?.classList.toggle("hidden") ?? true;
+		mobileBrandsToggle.setAttribute("aria-expanded", String(!isHidden));
+		mobileBrandsChevron?.classList.toggle("rotate-180", !isHidden);
+		mobileProductsList?.classList.add("hidden");
+		mobileProductsToggle?.setAttribute("aria-expanded", "false");
+		mobileProductsChevron?.classList.remove("rotate-180");
+	});
+
+	const productsTrigger = document.getElementById("products-trigger");
+	const productsDropdown = document.getElementById("products-dropdown");
+	const productsChevron = document.getElementById("products-chevron");
+	const brandsTrigger = document.getElementById("brands-trigger");
+	const brandsDropdown = document.getElementById("brands-dropdown");
+	const brandsChevron = document.getElementById("brands-chevron");
+
+	function closeDesktopDropdowns() {
+		productsDropdown?.classList.add("hidden");
+		productsTrigger?.setAttribute("aria-expanded", "false");
+		productsChevron?.classList.remove("rotate-180");
+		brandsDropdown?.classList.add("hidden");
+		brandsTrigger?.setAttribute("aria-expanded", "false");
+		brandsChevron?.classList.remove("rotate-180");
+	}
+
+	productsTrigger?.addEventListener("click", (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+		const isHidden = productsDropdown?.classList.toggle("hidden");
+		productsTrigger?.setAttribute("aria-expanded", String(!isHidden));
+		productsChevron?.classList.toggle("rotate-180", !isHidden);
+		brandsDropdown?.classList.add("hidden");
+		brandsTrigger?.setAttribute("aria-expanded", "false");
+		brandsChevron?.classList.remove("rotate-180");
+	});
+
+	brandsTrigger?.addEventListener("click", (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+		const isHidden = brandsDropdown?.classList.toggle("hidden");
+		brandsTrigger?.setAttribute("aria-expanded", String(!isHidden));
+		brandsChevron?.classList.toggle("rotate-180", !isHidden);
+		productsDropdown?.classList.add("hidden");
+		productsTrigger?.setAttribute("aria-expanded", "false");
+		productsChevron?.classList.remove("rotate-180");
+	});
+
+	document.addEventListener("click", (e: MouseEvent) => {
+		const target = e.target as Node;
+		const productsItem = document.getElementById("products-nav-item");
+		const brandsItem = document.getElementById("brands-nav-item");
+		if (productsItem && !productsItem.contains(target) && brandsItem && !brandsItem.contains(target)) {
+			closeDesktopDropdowns();
+		}
 	});
 </script>
