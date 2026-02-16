@@ -5,72 +5,85 @@ import Icon from "../ui/Icon.astro";
 import { Facebook, Instagram, Mail, Twitter } from "@lucide/astro";
 ---
 
-<footer class='footer relative overflow-hidden bg-kfood-primary text-white pt-10'>
-	<div class='footer-bg-wrapper' aria-hidden='true'>
-		<Image src={footerBg} alt='' class='footer-bg-image' />
-	</div>
-	<div class='footer-overlay' aria-hidden='true'></div>
+<footer class='footer relative overflow-hidden bg-kfood-primary text-white md:!pt-[150px] !pt-[100px]'>
+	<div class='container mx-auto px-6 md:px-0'>
+		<div class='footer-bg-wrapper' aria-hidden='true'>
+			<!-- <Image src={footerBg} alt='' class='footer-bg-image' /> -->
+		</div>
+		<div class='footer-overlay' aria-hidden='true'></div>
 
-	<div class='relative z-10 mx-auto max-w-[1440px] pt-14 pb-10'>
-		<div class='flex justify-between'>
-			<!-- Left Column -->
-			<div class='footer-col-left'>
-				<a href='/' class='inline-block mb-4'>
-					<Icon icon='LogoWhite' class='h-[117px] w-auto' />
-				</a>
-				<p class='footer-company'>Waseela Pakistan Private Limited</p>
-				<p class='footer-address'>DHA Phase 8 - Ex Park View, Block D, CHS, Lahore</p>
-				<div class='footer-payment-icons'>
-					<Icon icon='Cash' />
-					<Icon icon='Easypaisa' />
-					<Icon icon='Jazzcash' />
-					<Icon icon='Visa' />
-					<Icon icon='Mastercard' />
+		<div class='relative z-10 mx-auto max-w-[1440px] pt-14 pb-10'>
+			<div class='flex items-center md:flex-row flex-col justify-between'>
+				<div class='md:w-[40%] w-full'>
+					<div class='footer-col-left'>
+						<a href='/' class='inline-block mb-4'>
+							<Icon icon='LogoWhite' class='h-[117px] w-auto' />
+						</a>
+						<p class='footer-company'>Waseela Pakistan Private Limited</p>
+						<p class='footer-address'>DHA Phase 8 - Ex Park View, Block D, CHS, Lahore</p>
+						<div class='footer-payment-icons'>
+							<Icon icon='Cash' />
+							<Icon icon='Easypaisa' />
+							<Icon icon='Jazzcash' />
+							<Icon icon='Visa' />
+							<Icon icon='Mastercard' />
+						</div>
+					</div>
 				</div>
-				<p class='footer-subscribe-title'>SUBSCRIBE TO OUR NEWSLETTER</p>
-				<form id='footer-newsletter-form' action='#' method='post'>
-					<input type='email' name='email' placeholder='Email' class='footer-email-input' />
-				</form>
+				<div class='md:w-[40%] w-full'>
+					<!-- Right Column -->
+					<div class='footer-col-right'>
+						<div class='footer-nav-row'>
+							<div class='footer-nav-group'>
+								<h3 class='footer-heading'>Services</h3>
+								<ul class='footer-links'>
+									<li><a href='#'>Shop Online</a></li>
+									<li><a href='#'>Store Locations</a></li>
+									<li><a href='#'>Our Story</a></li>
+									<li><a href='#'>News</a></li>
+								</ul>
+							</div>
+							<div class='footer-nav-group'>
+								<h3 class='footer-heading'>Policies</h3>
+								<ul class='footer-links'>
+									<li><a href='#'>Privacy Policy</a></li>
+									<li><a href='#'>Terms of Service</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-
-			<!-- Right Column -->
-			<div class='footer-col-right'>
-				<div class='footer-nav-row'>
-					<div class='footer-nav-group'>
-						<h3 class='footer-heading'>Services</h3>
-						<ul class='footer-links'>
-							<li><a href='#'>Shop Online</a></li>
-							<li><a href='#'>Store Locations</a></li>
-							<li><a href='#'>Our Story</a></li>
-							<li><a href='#'>News</a></li>
-						</ul>
-					</div>
-					<div class='footer-nav-group'>
-						<h3 class='footer-heading'>Policies</h3>
-						<ul class='footer-links'>
-							<li><a href='#'>Privacy Policy</a></li>
-							<li><a href='#'>Terms of Service</a></li>
-						</ul>
+			<div class='flex items-center md:flex-row flex-col justify-between md:mt-10 mt-6'>
+				<div class='md:w-[40%] w-full'>
+					<div class='footer-col-left'>
+						<p class='footer-subscribe-title'>SUBSCRIBE TO OUR NEWSLETTER</p>
+						<form id='footer-newsletter-form' action='#' method='post'>
+							<input type='email' name='email' placeholder='Email' class='footer-email-input' />
+						</form>
 					</div>
 				</div>
-				<div class='footer-bottom-row'>
-					<div class='footer-help-block'>
-						<p class='footer-need-help'>Need Help?</p>
-						<p class='footer-contact-us'>Contact Us</p>
-					</div>
-					<div class='footer-social' aria-label='Social links'>
-						<a href='#' class='footer-social-icon' aria-label='Facebook'>
-							<Facebook size={22} />
-						</a>
-						<a href='#' class='footer-social-icon' aria-label='Instagram'>
-							<Instagram size={22} />
-						</a>
-						<a href='#' class='footer-social-icon' aria-label='Email'>
-							<Mail size={22} />
-						</a>
-						<a href='#' class='footer-social-icon' aria-label='Twitter'>
-							<Twitter size={22} />
-						</a>
+				<div class='md:w-[40%] w-full'>
+					<!-- Right Column -->
+					<div class='footer-bottom-row md:w-[75%] w-full'>
+						<div class='footer-help-block'>
+							<p class='footer-need-help'>Need Help?</p>
+							<p class='footer-contact-us'>Contact Us</p>
+						</div>
+						<div class='footer-social' aria-label='Social links'>
+							<a href='#' class='footer-social-icon' aria-label='Facebook'>
+								<Facebook size={22} />
+							</a>
+							<a href='#' class='footer-social-icon' aria-label='Instagram'>
+								<Instagram size={22} />
+							</a>
+							<a href='#' class='footer-social-icon' aria-label='Email'>
+								<Mail size={22} />
+							</a>
+							<a href='#' class='footer-social-icon' aria-label='Twitter'>
+								<Twitter size={22} />
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -81,17 +94,20 @@ import { Facebook, Instagram, Mail, Twitter } from "@lucide/astro";
 <style>
 	/* Background image – starts below top space so the card has room above */
 	.footer-bg-wrapper {
-		position: absolute;
+		/* position: absolute; */
 		left: 0;
 		right: 0;
 		bottom: 0;
 		pointer-events: none;
 		overflow: hidden;
 	}
-	.footer-bg-image {
-		width: 100%;
-		height: 100%;
-		object-position: center bottom;
+
+	.footer {
+		background-image: url("../../assets/footer_bg.png");
+		background-size: contain;
+		background-position: center bottom;
+		background-repeat: no-repeat;
+		height: fit-content;
 	}
 	.footer-overlay {
 		position: absolute;

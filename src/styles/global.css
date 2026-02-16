@@ -294,3 +294,7 @@ body {
 	top: 50%;
 	margin-top: -18px;
 }
+
+.products-swiper-wrap[data-astro-cid-yw2btwjk] .products-swiper {
+	padding: 10px 50px;
+}

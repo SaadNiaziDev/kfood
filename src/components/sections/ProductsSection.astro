@@ -9,6 +9,7 @@ import OatFlourIcon from "../../assets/oat_flour.png";
 import { Image } from "astro:assets";
 import Button from "../ui/Button.astro";
 import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext } from "astro-swiper";
+import { ChevronLeftIcon, ChevronRightIcon } from "@lucide/astro";
 
 const categories = [
 	{ icon: ButterIcon, label: "Butter" },
@@ -29,7 +30,7 @@ const products = [
 	<div class='px-6 md:px-10 lg:px-16 flex flex-col items-center'>
 		<SectionHeading title='Products' subtitle='Pure organic products for everyday life' />
 
-		<div class='flex flex-wrap justify-center gap-4 md:gap-6 lg:gap-8 mb-12'>
+		<div class='flex flex-wrap justify-center gap-4 md:gap-8 lg:gap-10 mb-12'>
 			{
 				categories.map((category) => (
 					<button class='flex flex-col items-center space-y-2 hover:transform hover:-translate-y-1 hover:!text-kfood-primary transition-transform cursor-pointer'>
@@ -57,7 +58,9 @@ const products = [
 						1024: { slidesPerView: 4 },
 					},
 				}}>
-				<SwiperButtonPrev />
+				<SwiperButtonPrev class={" !text-black"}>
+					<ChevronLeftIcon class='w-6 h-6' />
+				</SwiperButtonPrev>
 				<SwiperWrapper>
 					{
 						products.map((product) => (
@@ -67,7 +70,9 @@ const products = [
 						))
 					}
 				</SwiperWrapper>
-				<SwiperButtonNext />
+				<SwiperButtonNext class={" !text-black"}>
+					<ChevronRightIcon class='w-6 h-6' />
+				</SwiperButtonNext>
 			</Swiper>
 		</div>
 	</div>

@@ -11,43 +11,44 @@ const banners = [
 ];
 ---
 
-<section class='relative bg-cream min-h-[400px] overflow-hidden bg-section py-12 md:py-16'>
+<section class='relative bg-cream min-h-[400px] overflow-hidden bg-section py-12 md:py-[150px]'>
 	<div class='pointer-events-none absolute right-0 top-0 h-full w-full opacity-[0.05]' aria-hidden='true'>
 		<Image src={bgImage} alt='' class='h-full w-full object-cover object-right' />
 	</div>
 
-	<div
-		class='container relative z-10 mx-auto flex min-h-[300px] md:min-h-[440px] flex-col items-center gap-8 px-4 lg:flex-row lg:items-center lg:gap-10'>
-		<div class='shrink-0 text-center lg:max-w-[240px] lg:text-left'>
-			<h2 class='text-heading-section'>Beyond Our Products</h2>
-		</div>
+	<div class='container relative z-10 mx-auto'>
+		<div class='flex items-center justify-between'>
+			<div class='shrink-0 text-center md:text-center'>
+				<h2 class='text-heading-section'>Beyond <br class='hidden md:block' /> Our Products</h2>
+			</div>
 
-		<div class='kisaan-carousel w-full flex-1 min-w-0'>
-			<Swiper
-				uniqueClass='kisaan-swiper'
-				useCustomElement={false}
-				options={{
-					slidesPerView: 1,
-					spaceBetween: 0,
-					loop: true,
-					navigation: true,
-					autoplay: { delay: 4000, disableOnInteraction: false },
-					watchOverflow: true,
-				}}>
-				<SwiperWrapper>
-					{
-						banners.map((banner) => (
-							<SwiperSlide>
-								<a href={banner.href} class='kisaan-card'>
-									<Image src={banner.image} alt={banner.alt} class='w-full h-full object-cover' />
-								</a>
-							</SwiperSlide>
-						))
-					}
-				</SwiperWrapper>
-				<SwiperButtonPrev />
-				<SwiperButtonNext />
-			</Swiper>
+			<div class='kisaan-carousel w-full md:!w-[75%]'>
+				<Swiper
+					uniqueClass='kisaan-swiper'
+					useCustomElement={false}
+					options={{
+						slidesPerView: 1,
+						spaceBetween: 0,
+						loop: true,
+						navigation: true,
+						autoplay: { delay: 4000, disableOnInteraction: false },
+						watchOverflow: true,
+					}}>
+					<SwiperWrapper>
+						{
+							banners.map((banner) => (
+								<SwiperSlide>
+									<a href={banner.href} class='kisaan-card'>
+										<Image src={banner.image} alt={banner.alt} class='w-full h-full object-cover' />
+									</a>
+								</SwiperSlide>
+							))
+						}
+					</SwiperWrapper>
+					<SwiperButtonPrev />
+					<SwiperButtonNext />
+				</Swiper>
+			</div>
 		</div>
 	</div>
 </section>

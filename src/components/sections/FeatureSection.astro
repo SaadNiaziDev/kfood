@@ -35,22 +35,23 @@ const features = [
 		style='background: linear-gradient(90.87deg, rgba(0, 0, 0, 0.3) 0%, #034D6D 99.27%);'
 		aria-hidden='true'>
 	</div>
-	<div
-		class='relative z-10 h-full min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[925px] flex items-center justify-center md:justify-end'>
+	<div class='container mx-auto w-full'>
 		<div
-			class='w-full max-w-xl lg:max-w-[515px] px-6 sm:px-8 lg:px-12 xl:pl-0 xl:pr-24 py-12 md:py-16 space-y-6 lg:space-y-7'>
-			{
-				features.map((feature) =>
-					feature ? (
-						<div class='space-y-3 flex flex-col items-start'>
-							<h3 class='text-heading-feature !text-kfood-yellow'>{feature.title}</h3>
-							<p class='text-base md:text-lg lg:text-xl leading-relaxed text-left md:text-justify text-white font-body'>
-								{feature.description}
-							</p>
-						</div>
-					) : null,
-				)
-			}
+			class='relative z-10 h-full min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[925px] flex items-center justify-center md:justify-end'>
+			<div class='w-full lg:max-w-[515px] px-6 sm:px-8 lg:px-12 xl:pl-0 xl:pr-24 py-12 md:py-16 space-y-6 lg:space-y-7'>
+				{
+					features.map((feature) =>
+						feature ? (
+							<div class='space-y-3 flex flex-col items-start'>
+								<h3 class='text-heading-feature !text-kfood-yellow'>{feature.title}</h3>
+								<p class='text-base md:text-lg lg:text-xl leading-relaxed text-left md:text-justify text-white font-body'>
+									{feature.description}
+								</p>
+							</div>
+						) : null,
+					)
+				}
+			</div>
 		</div>
 	</div>
 </section>
