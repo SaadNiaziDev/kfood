@@ -2,25 +2,136 @@
 import { Image } from "astro:assets";
 import bgImage from "../../assets/BG2 3.png";
 import kisaanStoriesImage from "../../assets/kissan_story.png";
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext } from "astro-swiper";
+
+const banners = [
+	{ image: kisaanStoriesImage, alt: "Farmers in our supply network", href: "#", title: "Kisaan Stories" },
+	{ image: kisaanStoriesImage, alt: "Farmers in our supply network", href: "#", title: "Kisaan Stories" },
+	{ image: kisaanStoriesImage, alt: "Farmers in our supply network", href: "#", title: "Kisaan Stories" },
+];
 ---
 
-<section class='relative min-h-[400px] overflow-hidden bg-section py-16'>
+<section class='relative bg-cream min-h-[400px] overflow-hidden bg-section py-12 md:py-16'>
 	<div class='pointer-events-none absolute right-0 top-0 h-full w-full opacity-[0.05]' aria-hidden='true'>
 		<Image src={bgImage} alt='' class='h-full w-full object-cover object-right' />
 	</div>
 
 	<div
-		class='container relative z-10 mx-auto flex min-h-[300px] md:min-h-[440px] flex-col items-center gap-8 px-4 lg:flex-row lg:items-center lg:justify-between lg:gap-12'>
-		<div class='flex-col justify-center text-center lg:max-w-md lg:text-left'>
-			<h2 class='text-heading-section px-4'>Beyond Our Products</h2>
+		class='container relative z-10 mx-auto flex min-h-[300px] md:min-h-[440px] flex-col items-center gap-8 px-4 lg:flex-row lg:items-center lg:gap-10'>
+		<div class='shrink-0 text-center lg:max-w-[240px] lg:text-left'>
+			<h2 class='text-heading-section'>Beyond Our Products</h2>
 		</div>
 
-		<div class='flex items-center justify-center gap-4'>
-			<div class='overflow-hidden rounded-card shadow-lg w-full'>
-				<div class='relative w-full overflow-hidden aspect-video md:aspect-auto md:h-auto'>
-					<Image src={kisaanStoriesImage} alt='Farmers in our supply network' class='h-full w-full object-cover' />
-				</div>
-			</div>
+		<div class='kisaan-carousel w-full flex-1 min-w-0'>
+			<Swiper
+				uniqueClass='kisaan-swiper'
+				useCustomElement={false}
+				options={{
+					slidesPerView: 1,
+					spaceBetween: 0,
+					loop: true,
+					navigation: true,
+					autoplay: { delay: 4000, disableOnInteraction: false },
+					watchOverflow: true,
+				}}>
+				<SwiperWrapper>
+					{
+						banners.map((banner) => (
+							<SwiperSlide>
+								<a href={banner.href} class='kisaan-card'>
+									<Image src={banner.image} alt={banner.alt} class='w-full h-full object-cover' />
+								</a>
+							</SwiperSlide>
+						))
+					}
+				</SwiperWrapper>
+				<SwiperButtonPrev />
+				<SwiperButtonNext />
+			</Swiper>
 		</div>
 	</div>
 </section>
+
+<style>
+	.kisaan-carousel :global(.kisaan-swiper) {
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+	}
+	.kisaan-carousel :global(.kisaan-swiper .swiper-wrapper) {
+		display: flex;
+	}
+	.kisaan-carousel :global(.kisaan-swiper .swiper-slide) {
+		flex-shrink: 0;
+		width: 100%;
+		height: auto;
+	}
+
+	.kisaan-card {
+		display: block;
+		border-radius: var(--radius-card);
+		overflow: hidden;
+		box-shadow: 0 4px 20px rgb(0 0 0 / 0.12);
+		background: #fff;
+	}
+	.kisaan-card-image {
+		width: 100%;
+		overflow: hidden;
+	}
+	.kisaan-card-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+	.kisaan-card-footer {
+		position: relative;
+		background: #ffa100;
+		padding: 28px 24px 20px;
+		text-align: center;
+	}
+	.kisaan-wave {
+		position: absolute;
+		top: -20px;
+		left: 0;
+		width: 100%;
+		height: 24px;
+	}
+	.kisaan-card-title {
+		font-family: "Oswald", sans-serif;
+		font-size: 28px;
+		line-height: 1.2;
+		color: #013049;
+	}
+
+	/* Navigation arrows */
+	.kisaan-carousel :global(.swiper-button-prev),
+	.kisaan-carousel :global(.swiper-button-next) {
+		color: #8a8a8a;
+		width: 32px;
+		height: 32px;
+		top: 50%;
+		margin-top: -16px;
+	}
+	.kisaan-carousel :global(.swiper-button-prev) {
+		left: 0;
+	}
+	.kisaan-carousel :global(.swiper-button-next) {
+		right: 0;
+	}
+	.kisaan-carousel :global(.swiper-button-prev::after),
+	.kisaan-carousel :global(.swiper-button-next::after) {
+		font-size: 20px;
+	}
+	.kisaan-carousel :global(.swiper-button-disabled) {
+		opacity: 0.3;
+	}
+
+	/* Hide arrows on mobile since card is full-width */
+	@media (max-width: 767px) {
+		.kisaan-carousel :global(.swiper-button-prev),
+		.kisaan-carousel :global(.swiper-button-next) {
+			display: none;
+		}
+	}
+</style>

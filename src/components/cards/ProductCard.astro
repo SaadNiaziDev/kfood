@@ -1,28 +1,24 @@
 ---
+import { Image } from "astro:assets";
+
+import type { ImageMetadata } from "astro";
+
 interface Props {
 	name: string;
 	weight?: string;
-	imageUrl?: string;
+	image?: ImageMetadata;
 	class?: string;
 }
 
-const { name, weight, imageUrl, class: className = "" } = Astro.props;
+const { name, weight, image, class: className = "" } = Astro.props;
+
+const imageAlt = name;
 ---
 
 <div
-	class={`bg-white rounded-card shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden ${className}`}>
-	<div
-		class='bg-gradient-to-br from-kfood-orange to-kfood-yellow h-48 flex items-center justify-center'>
-		{
-			imageUrl ? (
-				<img src={imageUrl} alt={name} class='w-full h-full object-cover' />
-			) : (
-				<div class='text-white text-6xl'>🌾</div>
-			)
-		}
-	</div>
+	class={`bg-white cursor-pointer rounded-card shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden ${className}`}>
+	<Image src={image!} alt={imageAlt!} class='w-full h-full object-cover' />
 	<div class='p-4 text-center'>
 		<h3 class='font-semibold text-kfood-body mb-1 font-body'>{name}</h3>
-		{weight && <p class='text-sm text-gray-500 font-body'>{weight}</p>}
 	</div>
 </div>

@@ -2,102 +2,117 @@
 import { Image } from "astro:assets";
 import footerBg from "../../assets/footer_bg.png";
 import Icon from "../ui/Icon.astro";
-import { Facebook, Instagram, Twitter, Youtube } from "@lucide/astro";
+import { Facebook, Instagram, Mail, Twitter } from "@lucide/astro";
 ---
 
-<footer class="footer relative overflow-hidden bg-kfood-primary text-white">
-	<div class="absolute inset-0 w-full overflow-hidden pointer-events-none" aria-hidden="true">
-		<Image src={footerBg} alt="" class="h-full w-full object-cover object-bottom" quality={80} />
+<footer class='footer relative overflow-hidden bg-kfood-primary text-white pt-10'>
+	<div class='footer-bg-wrapper' aria-hidden='true'>
+		<Image src={footerBg} alt='' class='footer-bg-image' />
 	</div>
-	<div
-		class="pointer-events-none absolute inset-0"
-		aria-hidden="true"
-		style="background: linear-gradient(to bottom, rgba(1,48,73,0.4) 0%, rgba(1,48,73,0.75) 100%);">
-	</div>
+	<div class='footer-overlay' aria-hidden='true'></div>
 
-	<div class="relative z-10 mx-auto max-w-[1440px] px-[6%] pt-16 pb-12">
-		<div class="footer-grid">
-			<!-- Left Column: Logo, company info, payment, newsletter -->
-			<div class="footer-col-left">
-				<a href="/" class="inline-block mb-6">
-					<Icon icon="LogoWhite" class="h-[117px] w-auto" />
+	<div class='relative z-10 mx-auto max-w-[1440px] pt-14 pb-10'>
+		<div class='flex justify-between'>
+			<!-- Left Column -->
+			<div class='footer-col-left'>
+				<a href='/' class='inline-block mb-4'>
+					<Icon icon='LogoWhite' class='h-[117px] w-auto' />
 				</a>
-				<p class="footer-company">Waseela Pakistan Private Limited</p>
-				<p class="footer-address">DHA Phase 8 - Ex Park View, Block D, CHS, Lahore</p>
-				<div class="flex flex-wrap items-center gap-3 mb-10">
-					<Icon icon="Cash" />
-					<Icon icon="Easypaisa" />
-					<Icon icon="Jazzcash" />
-					<Icon icon="Visa" />
-					<Icon icon="Mastercard" />
+				<p class='footer-company'>Waseela Pakistan Private Limited</p>
+				<p class='footer-address'>DHA Phase 8 - Ex Park View, Block D, CHS, Lahore</p>
+				<div class='footer-payment-icons'>
+					<Icon icon='Cash' />
+					<Icon icon='Easypaisa' />
+					<Icon icon='Jazzcash' />
+					<Icon icon='Visa' />
+					<Icon icon='Mastercard' />
 				</div>
-				<p class="footer-subscribe-title">SUBSCRIBE TO OUR NEWSLETTER</p>
-				<form id="footer-newsletter-form" action="#" method="post">
-					<input
-						type="email"
-						name="email"
-						placeholder="Email"
-						class="footer-email-input"
-					/>
+				<p class='footer-subscribe-title'>SUBSCRIBE TO OUR NEWSLETTER</p>
+				<form id='footer-newsletter-form' action='#' method='post'>
+					<input type='email' name='email' placeholder='Email' class='footer-email-input' />
 				</form>
 			</div>
 
-			<!-- Middle Column: Services + Need Help + Social -->
-			<div class="footer-col-middle">
-				<h3 class="footer-heading">Services</h3>
-				<ul class="footer-links">
-					<li><a href="#" class="hover:text-kfood-background transition-colors">Shop Online</a></li>
-					<li><a href="#" class="hover:text-kfood-background transition-colors">Store Locations</a></li>
-					<li><a href="#" class="hover:text-kfood-background transition-colors">Our Story</a></li>
-					<li><a href="#" class="hover:text-kfood-background transition-colors">News</a></li>
-					<li><a href="#" class="hover:text-kfood-background transition-colors">Corporate Info</a></li>
-				</ul>
-				<div class="footer-bottom-row">
-					<div class="footer-help-block">
-						<p class="footer-need-help">Need Help?</p>
-						<p class="footer-contact-us">Contact Us</p>
+			<!-- Right Column -->
+			<div class='footer-col-right'>
+				<div class='footer-nav-row'>
+					<div class='footer-nav-group'>
+						<h3 class='footer-heading'>Services</h3>
+						<ul class='footer-links'>
+							<li><a href='#'>Shop Online</a></li>
+							<li><a href='#'>Store Locations</a></li>
+							<li><a href='#'>Our Story</a></li>
+							<li><a href='#'>News</a></li>
+						</ul>
 					</div>
-					<div class="footer-social" aria-label="Social links">
-						<a href="#" class="footer-social-icon" aria-label="Facebook">
+					<div class='footer-nav-group'>
+						<h3 class='footer-heading'>Policies</h3>
+						<ul class='footer-links'>
+							<li><a href='#'>Privacy Policy</a></li>
+							<li><a href='#'>Terms of Service</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class='footer-bottom-row'>
+					<div class='footer-help-block'>
+						<p class='footer-need-help'>Need Help?</p>
+						<p class='footer-contact-us'>Contact Us</p>
+					</div>
+					<div class='footer-social' aria-label='Social links'>
+						<a href='#' class='footer-social-icon' aria-label='Facebook'>
 							<Facebook size={22} />
 						</a>
-						<a href="#" class="footer-social-icon" aria-label="Instagram">
+						<a href='#' class='footer-social-icon' aria-label='Instagram'>
 							<Instagram size={22} />
 						</a>
-						<a href="#" class="footer-social-icon" aria-label="Twitter">
-							<Twitter size={22} />
+						<a href='#' class='footer-social-icon' aria-label='Email'>
+							<Mail size={22} />
 						</a>
-						<a href="#" class="footer-social-icon" aria-label="YouTube">
-							<Youtube size={22} />
+						<a href='#' class='footer-social-icon' aria-label='Twitter'>
+							<Twitter size={22} />
 						</a>
 					</div>
 				</div>
-			</div>
-
-			<!-- Right Column: Policies -->
-			<div class="footer-col-right">
-				<h3 class="footer-heading">Policies</h3>
-				<ul class="footer-links">
-					<li><a href="#" class="hover:text-kfood-background transition-colors">Privacy Policy</a></li>
-					<li><a href="#" class="hover:text-kfood-background transition-colors">Terms of Service</a></li>
-					<li><a href="#" class="hover:text-kfood-background transition-colors">Sitemap</a></li>
-				</ul>
 			</div>
 		</div>
 	</div>
 </footer>
 
 <style>
-	/* Grid layout */
+	/* Background image – starts below top space so the card has room above */
+	.footer-bg-wrapper {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		pointer-events: none;
+		overflow: hidden;
+	}
+	.footer-bg-image {
+		width: 100%;
+		height: 100%;
+		object-position: center bottom;
+	}
+	.footer-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		pointer-events: none;
+		background: linear-gradient(to bottom, rgba(1, 48, 73, 0.55) 0%, rgba(1, 48, 73, 0.8) 100%);
+	}
+
+	/* 2-column grid */
 	.footer-grid {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 3rem;
+		gap: 2.5rem;
 	}
 	@media (min-width: 768px) {
 		.footer-grid {
-			grid-template-columns: 35% 1fr auto;
-			gap: 2rem;
+			grid-template-columns: 38% 1fr;
+			gap: 4rem;
 		}
 	}
 
@@ -108,7 +123,7 @@ import { Facebook, Instagram, Twitter, Youtube } from "@lucide/astro";
 		font-size: 20px;
 		line-height: 30px;
 		color: #ffffff;
-		margin-bottom: 0.25rem;
+		margin-bottom: 2px;
 	}
 	.footer-address {
 		font-family: "Josefin Sans", sans-serif;
@@ -116,7 +131,14 @@ import { Facebook, Instagram, Twitter, Youtube } from "@lucide/astro";
 		font-size: 20px;
 		line-height: 30px;
 		color: #ffffff;
-		margin-bottom: 1.5rem;
+		margin-bottom: 1.25rem;
+	}
+	.footer-payment-icons {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 10px;
+		margin-bottom: 2rem;
 	}
 	.footer-subscribe-title {
 		font-family: "Josefin Sans", sans-serif;
@@ -124,7 +146,7 @@ import { Facebook, Instagram, Twitter, Youtube } from "@lucide/astro";
 		font-size: 25px;
 		line-height: 25px;
 		color: #fbeee0;
-		margin-bottom: 1rem;
+		margin-bottom: 0.75rem;
 	}
 	.footer-email-input {
 		font-family: "Josefin Sans", sans-serif;
@@ -133,7 +155,6 @@ import { Facebook, Instagram, Twitter, Youtube } from "@lucide/astro";
 		line-height: 30px;
 		color: #013049;
 		width: 100%;
-		max-width: 340px;
 		padding: 10px 16px;
 		background: #fbeee0;
 		border: none;
@@ -145,6 +166,19 @@ import { Facebook, Instagram, Twitter, Youtube } from "@lucide/astro";
 		opacity: 0.7;
 	}
 
+	/* Right column */
+	.footer-col-right {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	/* Nav row: Services + Policies side by side */
+	.footer-nav-row {
+		display: flex;
+		gap: 4rem;
+	}
+
 	/* Headings */
 	.footer-heading {
 		font-family: "Oswald", sans-serif;
@@ -152,7 +186,7 @@ import { Facebook, Instagram, Twitter, Youtube } from "@lucide/astro";
 		font-size: 35px;
 		line-height: 40px;
 		color: #fbeee0;
-		margin-bottom: 0.75rem;
+		margin-bottom: 0.5rem;
 	}
 
 	/* Links */
@@ -166,14 +200,20 @@ import { Facebook, Instagram, Twitter, Youtube } from "@lucide/astro";
 		padding: 0;
 		margin: 0;
 	}
+	.footer-links a {
+		transition: opacity 0.2s;
+	}
+	.footer-links a:hover {
+		opacity: 0.75;
+	}
 
 	/* Bottom row: Need Help + Social icons */
 	.footer-bottom-row {
 		display: flex;
 		align-items: flex-end;
-		gap: 1.5rem;
-		margin-top: auto;
-		padding-top: 1.5rem;
+		justify-content: space-between;
+		gap: 2rem;
+		padding-top: 1.25rem;
 	}
 	.footer-help-block {
 		flex-shrink: 0;
@@ -197,7 +237,7 @@ import { Facebook, Instagram, Twitter, Youtube } from "@lucide/astro";
 	.footer-social {
 		display: flex;
 		align-items: center;
-		gap: 12px;
+		gap: 16px;
 	}
 	.footer-social-icon {
 		display: flex;
@@ -215,10 +255,27 @@ import { Facebook, Instagram, Twitter, Youtube } from "@lucide/astro";
 		opacity: 0.85;
 	}
 
-	/* Middle column stretches to push bottom row down */
-	.footer-col-middle {
-		display: flex;
-		flex-direction: column;
+	/* Mobile stacking */
+	@media (max-width: 767px) {
+		.footer-nav-row {
+			gap: 2.5rem;
+		}
+		.footer-heading {
+			font-size: 28px;
+			line-height: 34px;
+		}
+		.footer-links {
+			font-size: 18px;
+			line-height: 40px;
+		}
+		.footer-bottom-row {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1.25rem;
+		}
+		.footer-email-input {
+			max-width: 100%;
+		}
 	}
 </style>
 

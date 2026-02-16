@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import NewsCard from "../cards/NewsCard.astro";
 import bg2Image from "../../assets/BG2 4.png";
 import articleImage from "../../assets/article.png";
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext } from "astro-swiper";
 
 const news = [
 	{
@@ -37,34 +38,75 @@ const news = [
 ---
 
 <section id='news' class='relative py-20 overflow-hidden bg-primary'>
-	<div
-		class='absolute right-0 top-0 w-full max-w-[1441px] h-full opacity-40 pointer-events-none overflow-hidden'
-		aria-hidden='true'>
-		<Image src={bg2Image} alt='' class='w-full h-full object-cover object-right' quality={80} />
+	<div class='absolute inset-0 w-full h-full opacity-40 pointer-events-none overflow-hidden' aria-hidden='true'>
+		<Image src={bg2Image} alt='' class='w-full h-full object-cover object-center' quality={100} />
 	</div>
-	<div class='container mx-auto px-4 relative z-10'>
+	<div class='relative z-10 px-6 md:px-10 lg:px-16'>
 		<div class='text-center mb-12 px-4'>
 			<h2 class='!text-white mb-2 text-heading-section'>News & Updates</h2>
-			<p class='!text-white mx-auto max-w-[609px] text-body-lg'>
+			<p class='!text-white mx-auto text-body-lg'>
 				Stay updated with the happenings at Kfood - New launches, Partnerships and more.
 			</p>
-			<div class='w-20 h-1 mx-auto mt-4 bg-accent-orange'></div>
 		</div>
 
-		<div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1280px] mx-auto'>
-			{
-				news?.map((article) =>
-					article ? (
-						<NewsCard
-							title={article.title}
-							excerpt={article.excerpt}
-							date={article.date}
-							category={article.category}
-							image={article.image}
-						/>
-					) : null,
-				)
-			}
+		<div class='news-swiper-wrap w-full'>
+			<Swiper
+				uniqueClass='news-swiper'
+				useCustomElement={false}
+				options={{
+					slidesPerView: 1,
+					spaceBetween: 24,
+					loop: true,
+					navigation: true,
+					breakpoints: {
+						640: { slidesPerView: 2 },
+						1024: { slidesPerView: 4 },
+					},
+				}}>
+				<SwiperButtonPrev />
+				<SwiperWrapper>
+					{
+						news?.map((article) =>
+							article ? (
+								<SwiperSlide>
+									<NewsCard
+										title={article.title}
+										excerpt={article.excerpt}
+										date={article.date}
+										category={article.category}
+										image={article.image}
+									/>
+								</SwiperSlide>
+							) : null,
+						)
+					}
+				</SwiperWrapper>
+				<SwiperButtonNext />
+			</Swiper>
 		</div>
 	</div>
 </section>
+
+<style>
+	.news-swiper-wrap :global(.news-swiper) {
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+	}
+	.news-swiper-wrap :global(.news-swiper .swiper-slide) {
+		height: auto;
+	}
+	.news-swiper-wrap :global(.swiper-button-prev),
+	.news-swiper-wrap :global(.swiper-button-next) {
+		color: rgba(255, 255, 255, 0.9);
+	}
+	.news-swiper-wrap :global(.swiper-button-prev) {
+		left: 0;
+	}
+	.news-swiper-wrap :global(.swiper-button-next) {
+		right: 0;
+	}
+	.news-swiper-wrap :global(.swiper-button-disabled) {
+		opacity: 0.3;
+	}
+</style>

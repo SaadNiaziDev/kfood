@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import Icon from "../ui/Icon.astro";
+import bgImage from "../../assets/BG2 3.png";
 
 const partnerTypes = [
 	{
@@ -22,7 +24,7 @@ const partnerTypes = [
 const benefits = ["Competitive margins", "Marketing support", "Reliable supply chain", "Growing brand recognition"];
 ---
 
-<section id='contact' class='relative py-16 lg:py-20 overflow-hidden bg-section'>
+<section id='contact' class='bg-cream relative py-16 lg:py-20 overflow-hidden bg-section'>
 	<div class='container mx-auto px-4 relative z-10'>
 		<div class='flex justify-center mb-6'>
 			<div
@@ -31,13 +33,13 @@ const benefits = ["Competitive margins", "Marketing support", "Reliable supply c
 			</div>
 		</div>
 		<h2 class='text-center mb-4 text-heading-section px-4'>Partner with Kfood</h2>
-		<p class='text-center mx-auto mb-12 max-w-[697px] text-body-lg px-4'>
+		<p class='text-center mx-auto mb-12 text-body-lg px-4'>
 			Join the KFood family as a retail partner, distributor, or institutional buyer. Grow your business with trusted
 			food products.
 		</p>
 
-		<div class='grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-[1370px] mx-auto'>
-			<div class='lg:col-span-5 space-y-4'>
+		<div class='grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto'>
+			<div class='md:col-span-1 space-y-4'>
 				{
 					partnerTypes.map((item) =>
 						item ? (
@@ -74,8 +76,8 @@ const benefits = ["Competitive margins", "Marketing support", "Reliable supply c
 				</div>
 			</div>
 
-			<div class='lg:col-span-7'>
-				<div class='bg-white rounded-card px-8 py-4 max-w-[592px]'>
+			<div class='md:col-span-1'>
+				<div class='bg-white rounded-card px-8 py-4'>
 					<h3 class='text-[25px] leading-[60px] font-medium mb-2 font-heading text-kfood-primary'>Get in Touch</h3>
 					<form class='space-y-5' id='partner-form' method='POST' action='#'>
 						<div class='grid grid-cols-1 sm:grid-cols-2 gap-5'>
