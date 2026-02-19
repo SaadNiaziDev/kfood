@@ -8,7 +8,7 @@ interface Props {
 
 const { variant = "primary", size = "md", href, class: className = "" } = Astro.props;
 
-const baseClasses = "font-medium rounded-lg transition-all duration-200 inline-block text-center";
+const baseClasses = "font-body font-medium rounded-lg transition-all duration-200 inline-block text-center";
 
 const variantClasses = {
 	primary: "bg-kfood-orange text-white hover:bg-kfood-primary hover:shadow-lg",
@@ -28,7 +28,11 @@ const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} 
 
 {
 	href ? (
-		<a href={href} class={classes}>
+		<a
+			href={href}
+			class={classes}
+			target={href.startsWith("http") ? "_blank" : undefined}
+			rel={href.startsWith("http") ? "noopener noreferrer" : undefined}>
 			<slot />
 		</a>
 	) : (

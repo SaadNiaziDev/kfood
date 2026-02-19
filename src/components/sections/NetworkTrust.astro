@@ -5,11 +5,11 @@ import { Image } from "astro:assets";
 import bgImage from "../../assets/BG2 4.png";
 
 const stats = [
-	{ number: "25", label: "Years of Group Expertise", icon: "Reward" },
+	{ number: "5", label: "Years of Group Expertise", icon: "Reward" },
 	{ number: "10", label: "Product Categories", icon: "Products" },
-	{ number: "10,000", label: "Farmers in Our Supply Network", icon: "Farmers_Empowerment" },
-	{ number: "15", label: "Regions Served", icon: "location_on" },
-	{ number: "500", label: "Retail Touchpoints", icon: "Retailers_store" },
+	{ number: "40,000", label: "Farmers in Our Supply Network", icon: "Farmers_Empowerment" },
+	{ number: "8", label: "Cities We Operate In", icon: "location_on" },
+	{ number: "200", label: "Retail Touchpoints", icon: "Retailers_store" },
 ];
 ---
 
@@ -21,12 +21,20 @@ px-6 md:px-10 lg:px-16'>
 		<div class='mb-8 md:mb-12'>
 			<SectionHeading
 				title='Network you can trust'
-				subtitle='With decades of agricultural expertise, Kfood brings you a promise of quality and nutrition in every product'
+				subtitle='With decades of agricultural expertise, KFood brings you a promise of quality and nutrition in every product'
 			/>
 		</div>
 
-		<div class='grid grid-cols-2 gap-4 md:gap-6 md:grid-cols-3 lg:grid-cols-5'>
+		<div class='hidden md:grid grid-cols-5 gap-6 max-w-6xl mx-auto'>
 			{stats.map((stat) => (stat ? <StatCard number={stat.number} label={stat.label} icon={stat.icon} /> : null))}
+		</div>
+
+		<div class='network-trust-stats md:hidden grid grid-cols-2 gap-4 pb-6 max-w-6xl mx-auto'>
+			{
+				stats
+					.slice(0, 4)
+					.map((stat) => (stat ? <StatCard number={stat.number} label={stat.label} icon={stat.icon} /> : null))
+			}
 		</div>
 	</div>
 </section>

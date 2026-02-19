@@ -228,6 +228,13 @@ body {
 	border-radius: var(--radius-button);
 }
 
+button,
+.btn-primary,
+.btn-cta,
+a.rounded-button {
+	font-family: var(--font-family-primary);
+}
+
 .btn-primary {
 	/* background-color: var(--color-kfood-primary); */
 	/* color: var(--color-white); */
@@ -248,23 +255,17 @@ body {
 
 .btn-cta {
 	border-radius: var(--radius-button);
-	box-shadow:
-		0 4px 14px rgba(214, 101, 0, 0.25),
-		0 2px 6px rgba(0, 0, 0, 0.08);
-	transition: box-shadow 0.2s ease, transform 0.2s ease;
+	opacity: 0.9;
+	font-family: var(--font-family-primary) !important;
 }
 
 .btn-cta:hover {
-	box-shadow:
-		0 8px 24px rgba(214, 101, 0, 0.35),
-		0 4px 12px rgba(0, 0, 0, 0.12);
-	transform: translateY(-2px);
+	opacity: 1;
 	cursor: pointer !important;
 }
 
 .btn-cta:active {
-	transform: translateY(0);
-	box-shadow: 0 2px 8px rgba(214, 101, 0, 0.2);
+	opacity: 1;
 }
 
 .hero-section-text {
@@ -327,4 +328,11 @@ body {
 
 .kisaan-carousel .kisaan-swiper {
 	padding: 10px 50px;
+}
+
+
+.border-kfood-green {
+	border-style: solid;
+	border-color: #034D6D;
+	border-width: 1px;
 }

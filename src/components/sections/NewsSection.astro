@@ -2,41 +2,9 @@
 import { Image } from "astro:assets";
 import NewsCard from "../cards/NewsCard.astro";
 import bg2Image from "../../assets/BG2 4.png";
-import articleImage from "../../assets/article.png";
+import { posts } from "../../data/posts";
 import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext } from "astro-swiper";
-import { ChevronLeftIcon, ChevronRightIcon } from "@lucide/astro";
-
-const news = [
-	{
-		title: "Kfood Expands to All over Punjab",
-		excerpt: "Stay updated with the happenings at Kfood - New launches, Partnerships and more.",
-		date: "January 28, 2026",
-		category: "Launch",
-		image: articleImage,
-	},
-	{
-		title: "Kfood Expands to All over Punjab",
-		excerpt: "Stay updated with the happenings at Kfood - New launches, Partnerships and more.",
-		date: "January 28, 2026",
-		category: "Partnership",
-		image: articleImage,
-	},
-	{
-		title: "Kfood Expands to All over Punjab",
-		excerpt: "Stay updated with the happenings at Kfood - New launches, Partnerships and more.",
-		date: "January 28, 2026",
-		category: "Event",
-		image: articleImage,
-	},
-	{
-		title: "Kfood Expands to All over Punjab",
-		excerpt: "Stay updated with the happenings at Kfood - New launches, Partnerships and more.",
-		date: "January 28, 2026",
-		category: "Expansion",
-		image: articleImage,
-	},
-];
-const newsForSwiper = [...news, ...news];
+import Icon from "../ui/Icon.astro";
 ---
 
 <section id='news-section' class='relative py-20 overflow-hidden bg-primary'>
@@ -47,50 +15,55 @@ const newsForSwiper = [...news, ...news];
 		<div class='text-center mb-12 px-4'>
 			<h2 class='!text-white mb-2 text-heading-section'>News & Updates</h2>
 			<p class='!text-white mx-auto text-body-lg'>
-				Stay updated with the happenings at Kfood - New launches, Partnerships and more.
+				Stay updated with the happenings at KFood - New launches, Partnerships and more.
 			</p>
 		</div>
 
-		<div class='news-swiper-wrap w-full'>
+		<div class='news-swiper-wrap w-full mx-auto px-10 md:px-12 lg:px-20 xl:px-24'>
 			<Swiper
 				uniqueClass='news-swiper'
 				useCustomElement={false}
+				addDefaultClass={false}
 				options={{
 					slidesPerView: 1,
 					slidesPerGroup: 1,
 					spaceBetween: 24,
-					loop: true,
+					loop: false,
 					navigation: {
 						nextEl: ".news-swiper .swiper-button-next",
 						prevEl: ".news-swiper .swiper-button-prev",
 					},
 					breakpoints: {
+						320: { slidesPerView: 1, slidesPerGroup: 1 },
 						640: { slidesPerView: 2, slidesPerGroup: 1 },
+						768: { slidesPerView: 3, slidesPerGroup: 1 },
 						1024: { slidesPerView: 4, slidesPerGroup: 1 },
 					},
 				}}>
 				<SwiperWrapper>
 					{
-						newsForSwiper.map((article) =>
-							article ? (
+						posts.map((post) =>
+							post ? (
 								<SwiperSlide>
-									<NewsCard
-										title={article.title}
-										excerpt={article.excerpt}
-										date={article.date}
-										category={article.category}
-										image={article.image}
-									/>
+									<a href='/#news-section' class='news-card-link block h-full min-h-0'>
+										<NewsCard
+											title={post.title}
+											excerpt={post.excerpt}
+											date={post.date}
+											category={post.category}
+											image={post.image}
+										/>
+									</a>
 								</SwiperSlide>
 							) : null,
 						)
 					}
 				</SwiperWrapper>
 				<SwiperButtonPrev addDefaultClass={true} class='!text-white'>
-					<ChevronLeftIcon class='w-6 h-6 text-white' />
+					<Icon icon='arrow' class='w-6 h-6 text-white' />
 				</SwiperButtonPrev>
 				<SwiperButtonNext addDefaultClass={true} class='!text-white'>
-					<ChevronRightIcon class='w-6 h-6 text-white' />
+					<Icon icon='arrow' class='w-6 h-6 rotate-180 text-white' />
 				</SwiperButtonNext>
 			</Swiper>
 		</div>
@@ -98,23 +71,49 @@ const newsForSwiper = [...news, ...news];
 </section>
 
 <style>
+	.news-card-link {
+		text-decoration: none;
+		color: inherit;
+		transition: opacity 0.2s;
+	}
+	.news-card-link:hover {
+		opacity: 0.95;
+	}
 	.news-swiper-wrap :global(.news-swiper) {
 		overflow: hidden;
 		position: relative;
 		width: 100%;
+		padding-bottom: 12px;
+		box-sizing: border-box;
 	}
 	.news-swiper-wrap :global(.news-swiper .swiper-slide) {
 		height: auto;
+		display: flex;
+		box-sizing: border-box;
+	}
+	.news-swiper-wrap :global(.news-swiper .swiper-wrapper) {
+		align-items: stretch;
 	}
 	.news-swiper-wrap :global(.swiper-button-prev),
 	.news-swiper-wrap :global(.swiper-button-next) {
-		color: rgba(255, 255, 255, 0.9);
+		color: #fff;
+		width: 36px;
+		height: 36px;
+		top: 35%;
+		margin-top: -18px;
+		left: 0;
+		right: auto;
 	}
 	.news-swiper-wrap :global(.swiper-button-prev) {
 		left: 0;
 	}
 	.news-swiper-wrap :global(.swiper-button-next) {
+		left: auto;
 		right: 0;
+	}
+	.news-swiper-wrap :global(.swiper-button-prev::after),
+	.news-swiper-wrap :global(.swiper-button-next::after) {
+		font-size: 22px;
 	}
 	.news-swiper-wrap :global(.swiper-button-disabled) {
 		opacity: 0.3;

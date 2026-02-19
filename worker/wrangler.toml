@@ -1,0 +1,9 @@
+name = "kfood-partner-form"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+FROM_EMAIL = "KFood <partner@kfood.pk>"
+TO_EMAIL = "contact@kfood.pk"
+
+# Run: npx wrangler secret put RESEND_API_KEY

@@ -4,83 +4,26 @@ import Icon from "../ui/Icon.astro";
 const storeTypes = [
 	{ label: "Supermarkets", icon: "Supermarket" },
 	{ label: "Hypermarkets", icon: "Retailers_store" },
-	{ label: "Local Kirana Stores", icon: "store" },
+	{ label: "Local Kiryana Stores", icon: "store" },
 ];
 
-const regions = [
-	{
-		name: "Punjab",
-		cities: [
-			"Lahore",
-			"Faisalabad",
-			"Rawalpindi",
-			"Gujranwala",
-			"Multan",
-			"Sialkot",
-			"Bahawalpur",
-			"Sargodha",
-			"Sheikhupura",
-			"Rahim Yar Khan",
-		],
-	},
-	{
-		name: "KPK",
-		cities: [
-			"Peshawar",
-			"Mardan",
-			"Mingora (Swat)",
-			"Abbottabad",
-			"Kohat",
-			"Dera Ismail Khan",
-			"Bannu",
-			"Swabi",
-			"Nowshera",
-			"Haripur",
-		],
-	},
-	{
-		name: "Sindh",
-		cities: [
-			"Karachi",
-			"Hyderabad",
-			"Sukkur",
-			"Larkana",
-			"Mirpur Khas",
-			"Nawabshah",
-			"Jacobabad",
-			"Shikarpur",
-			"Khairpur",
-		],
-	},
-	{
-		name: "Balochistan & AJK",
-		cities: [
-			"Muzaffarabad",
-			"Turbat",
-			"Khuzdar",
-			"Hub",
-			"Chaman",
-			"Gwadar",
-			"Sibi",
-			"Zhob",
-			"Loralai",
-			"Dera Murad Jamali",
-		],
-	},
+const cities = [
+	"Lahore",
+	"Faisalabad",
+	"Rawalpindi",
+	"Gujranwala",
+	"Multan",
+	"Sialkot",
+	"Bahawalpur",
+	"Sargodha",
+	"Sheikhupura",
+	"Rahim Yar Khan",
 ];
 ---
 
 <section id='store-locator' class='py-16 lg:py-20 bg-gray-50'>
 	<div class='px-6 md:px-10 lg:px-16'>
 		<h2 class='text-center text-heading-section mb-8 px-4'>Buy at a Store Near You</h2>
-
-		<div class='flex justify-center mb-10'>
-			<div
-				class='w-[60px] h-[60px] md:w-[81px] md:h-[81px] rounded-full bg-kfood-primary flex items-center justify-center'>
-				<Icon icon='location_on' class='w-[40px] h-[40px] md:w-[59px] md:h-[59px] text-white' />
-			</div>
-		</div>
-
 		<div class='flex flex-wrap justify-center gap-4 md:gap-8 lg:gap-16 mb-12'>
 			{
 				storeTypes.map((type) =>
@@ -96,25 +39,45 @@ const regions = [
 			}
 		</div>
 
-		<div class='grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 max-w-6xl mx-auto'>
-			{
-				regions.map((region) =>
-					region ? (
-						<div>
-							<h4 class='text-heading-feature mb-4 text-black text-center sm:text-left'>{region.name}</h4>
-							<ul class='space-y-0 text-center sm:text-left'>
-								{region.cities.map((city) =>
-									city ? (
-										<li class='text-base  leading-relaxed md:leading-[50px] underline text-kfood-body hover:text-accent-orange cursor-pointer transition-colors font-body'>
-											{city}
-										</li>
-									) : null,
-								)}
-							</ul>
-						</div>
-					) : null,
-				)
-			}
+		<div class='store-locator-marquee max-w-6xl mx-auto overflow-hidden py-4' aria-hidden='true'>
+			<div class='store-locator-marquee__track flex gap-8 lg:gap-12'>
+				{
+					cities.map((city) =>
+						city ? (
+							<span class='store-locator-marquee__city shrink-0 text-base md:text-lg font-body text-kfood-body font-medium'>
+								{city}
+							</span>
+						) : null,
+					)
+				}
+				{
+					cities.map((city) =>
+						city ? (
+							<span class='store-locator-marquee__city shrink-0 text-base md:text-lg font-body text-kfood-body font-medium'>
+								{city}
+							</span>
+						) : null,
+					)
+				}
+			</div>
 		</div>
 	</div>
 </section>
+
+<style>
+	.store-locator-marquee__track {
+		animation: store-locator-marquee 40s linear infinite;
+		width: max-content;
+	}
+	.store-locator-marquee:hover .store-locator-marquee__track {
+		animation-play-state: paused;
+	}
+	@keyframes store-locator-marquee {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+</style>

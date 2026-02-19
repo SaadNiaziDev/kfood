@@ -4,24 +4,25 @@ import FeatureImage from "../../assets/kitchen.png";
 
 const features = [
 	{
-		title: "Purely Organic",
+		title: "From Farm to Table",
 		description:
-			"Every product from Vanalaya is made with 100% certified organic ingredients, ensuring that what reaches you is pure, natural, and free from harmful chemicals.",
+			"Every KFood product begins at the source with carefully grown ingredients. What reaches your table is clean, responsibly handled, and consistently high quality.",
 	},
 	{
-		title: "Wholesome Goodness",
+		title: "Honest Nutrition",
 		description:
-			"We combine traditional wisdom with modern quality standards - giving you food and care products that nourish you from within.",
+			"We craft everyday staples using traditional know how and modern quality checks. Clean essentials made to nourish real Pakistani kitchens.",
 	},
 	{
 		title: "Sustainably Sourced",
 		description:
-			"From the farms we partner with to the jars we pack, everything is sourced responsibly. We care for your health and the planet alike.",
+			"From farm partnerships to milling and packing, we stay accountable at every step. Better sourcing, better standards, food that supports you and the land it comes from.",
 	},
 ];
 ---
 
-<section class='feature-section relative w-full overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[925px]'>
+<section
+	class='feature-section relative w-full overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[925px]'>
 	<div class='absolute inset-0 w-full h-full'>
 		<Image
 			src={FeatureImage}
@@ -35,11 +36,12 @@ const features = [
 		style='background: linear-gradient(90.87deg, rgba(0, 0, 0, 0.3) 0%, #034D6D 99.27%);'
 		aria-hidden='true'>
 	</div>
-	<div class='feature-section__bg-panel' aria-hidden='true' />
-	<div class='container mx-auto w-full'>
+	<div class='feature-section__bg-panel' aria-hidden='true'></div>
+	<div class='px-6 md:px-10 lg:px-16 w-full'>
 		<div
 			class='relative z-10 h-full min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[925px] flex items-center justify-center md:justify-end'>
-			<div class='feature-section__content w-full lg:max-w-[515px] px-[31px] sm:px-8 lg:px-12 xl:pl-0 xl:pr-24 py-12 md:py-16 space-y-6 lg:space-y-7'>
+			<div
+				class='feature-section__content w-full lg:max-w-[515px] px-[31px] sm:px-8 lg:px-12 xl:pl-0 xl:pr-24 py-12 md:py-16 space-y-6 lg:space-y-7'>
 				{
 					features.map((feature) =>
 						feature ? (

@@ -1,92 +1,136 @@
 ---
 import SectionHeading from "../ui/SectionHeading.astro";
 import ProductCard from "../cards/ProductCard.astro";
-import { ButterIcon, FlourIcon, MilkIcon, YogurtIcon, GheeIcon } from "../../assets/icons";
+import { FlourIcon, MilkIcon, YogurtIcon, GheeIcon } from "../../assets/icons";
 import BajraIcon from "../../assets/bajray.png";
 import BesanIcon from "../../assets/besan.png";
 import MakaiIcon from "../../assets/makai.png";
 import OatFlourIcon from "../../assets/oat_flour.png";
+import BarleyIcon from "../../assets/Barley.png";
+import BilonaRaviIcon from "../../assets/Bilona_Ravi_Desi_Ghee.png";
+import BilonaCowIcon from "../../assets/Bilona_Cow_Desi_Ghee.png";
+import DahiBoxIcon from "../../assets/Dahi_Box.png";
+import DahiPacketIcon from "../../assets/Dahi_Packet.png";
+import DesiGheeBoxIcon from "../../assets/Desi_Ghee_Box.png";
+import PodinaRaitaIcon from "../../assets/Podina_Raita.png";
+import ZeeraRaitaIcon from "../../assets/Zeera_Raita.png";
+import WheatChakkiIcon from "../../assets/Wheat_Chakki_Atta.png";
+import CowDesiGheeIcon from "../../assets/Cow_Desi_Ghee.png";
 import { Image } from "astro:assets";
 import Button from "../ui/Button.astro";
-import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext } from "astro-swiper";
-import { ChevronLeftIcon, ChevronRightIcon } from "@lucide/astro";
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext, SwiperPagination } from "astro-swiper";
+import Icon from "../ui/Icon.astro";
 
 const categories = [
-	{ icon: ButterIcon, label: "Butter" },
-	{ icon: FlourIcon, label: "Flour" },
-	{ icon: MilkIcon, label: "Milk" },
-	{ icon: YogurtIcon, label: "Yogurt" },
-	{ icon: GheeIcon, label: "Ghee" },
+	{ icon: FlourIcon, label: "Flour", type: "flour" },
+	// { icon: MilkIcon, label: "Milk", type: "milk" },
+	{ icon: YogurtIcon, label: "Yogurt", type: "yogurt" },
+	{ icon: GheeIcon, label: "Ghee", type: "ghee" },
 ];
 const products = [
-	{ name: "Bajray Ka Atta", icon: BajraIcon, weight: "5kg" },
-	{ name: "Besan", icon: BesanIcon, weight: "10kg" },
-	{ name: "Makkai ka Atta", icon: MakaiIcon, weight: "2kg" },
-	{ name: "Oat Flour", icon: OatFlourIcon, weight: "1kg" },
+	{ name: "Wheat Chakki Atta", icon: WheatChakkiIcon, weight: "1kg", type: "flour" },
+	{ name: "Besan", icon: BesanIcon, weight: "10kg", type: "flour" },
+	{ name: "Makkai ka Atta", icon: MakaiIcon, weight: "2kg", type: "flour" },
+	{ name: "Bajray Ka Atta", icon: BajraIcon, weight: "5kg", type: "flour" },
+	{ name: "Oat Flour", icon: OatFlourIcon, weight: "1kg", type: "flour" },
+	{ name: "Barley", icon: BarleyIcon, weight: "1kg", type: "flour" },
+	{ name: "Bilona Buffalo Desi Ghee", icon: BilonaRaviIcon, weight: "1kg", type: "ghee" },
+	{ name: "Bilona Cow Desi Ghee", icon: BilonaCowIcon, weight: "1kg", type: "ghee" },
+	{ name: "Buffalo Desi Ghee", icon: DesiGheeBoxIcon, weight: "1kg", type: "ghee" },
+	{ name: "Cow Desi Ghee", icon: CowDesiGheeIcon, weight: "1kg", type: "ghee" },
+	{ name: "Podina Raita", icon: PodinaRaitaIcon, weight: "1kg", type: "yogurt" },
+	{ name: "Zeera Raita", icon: ZeeraRaitaIcon, weight: "1kg", type: "yogurt" },
+	{ name: "Natural Dahi", icon: DahiPacketIcon, weight: "1kg", type: "yogurt" },
+	{ name: "Natural Dahi", icon: DahiBoxIcon, weight: "1kg", type: "yogurt" },
 ];
-const productsForSwiper = [...products, ...products];
+
+const defaultCategoryType = "flour";
+
+function getProductsByType(type: string) {
+	return products.filter((p) => p.type === type);
+}
 ---
 
 <section id='products' class='py-12 md:py-16 bg-white'>
 	<div class='px-6 md:px-10 lg:px-16 flex flex-col items-center'>
 		<SectionHeading title='Products' subtitle='Pure organic products for everyday life' />
 
-		<div class='category-buttons flex flex-wrap justify-center gap-4 md:gap-8 lg:gap-10 mb-12'>
+		<div
+			class='category-buttons flex flex-nowrap overflow-x-auto justify-start md:flex-wrap md:justify-center gap-4 md:gap-8 lg:gap-10 mb-12'>
 			{
-				categories.map((category, index) => (
-					<button
-						type='button'
-						class='category-btn flex flex-col items-center space-y-2 py-2 px-3 rounded-lg transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-kfood-primary focus-visible:ring-offset-2 hover:-translate-y-1 hover:text-kfood-primary active:scale-95'
-						aria-pressed={index === 0 ? "true" : "false"}>
-						<span class='category-btn-icon'>
-							<Image src={category.icon} alt={category.label} class='w-12 h-12 md:w-16 md:h-16' />
-						</span>
-						<span class='text-xs md:text-sm font-medium text-muted category-btn-label'>{category.label}</span>
-					</button>
-				))
+				categories.map((category) =>
+					category ? (
+						<button
+							type='button'
+							class='category-btn flex flex-col items-center space-y-2 py-2 px-3 rounded-lg transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-kfood-primary focus-visible:ring-offset-2 hover:-translate-y-1 hover:text-kfood-primary active:scale-95 shrink-0'
+							data-type={category.type}
+							aria-pressed={category.type === defaultCategoryType ? "true" : "false"}>
+							<span class='category-btn-icon'>
+								<Image src={category.icon} alt={category.label} class='w-12 h-12 md:w-16 md:h-16' />
+							</span>
+							<span class='text-xs md:text-sm font-medium text-muted category-btn-label'>{category.label}</span>
+						</button>
+					) : null,
+				)
 			}
 		</div>
 
-		<div class='products-swiper-wrap w-full mx-auto mb-8'>
-			<Swiper
-				uniqueClass='products-swiper'
-				useCustomElement={false}
-				addDefaultClass={false}
-				options={{
-					slidesPerView: 4,
-					slidesPerGroup: 1,
-					spaceBetween: 24,
-					loop: true,
-					navigation: {
-						nextEl: ".products-swiper .swiper-button-next",
-						prevEl: ".products-swiper .swiper-button-prev",
-					},
-					autoplay: { delay: 4000, disableOnInteraction: false },
-					breakpoints: {
-						320: { slidesPerView: 1, slidesPerGroup: 1 },
-						640: { slidesPerView: 2, slidesPerGroup: 1 },
-						768: { slidesPerView: 3, slidesPerGroup: 1 },
-						1024: { slidesPerView: 4, slidesPerGroup: 1 },
-					},
-				}}>
-				<SwiperWrapper>
-					{
-						productsForSwiper.map((product) =>
-							product ? (
-								<SwiperSlide>
-									<ProductCard name={product.name} weight={product.weight} image={product.icon} />
-								</SwiperSlide>
-							) : null,
-						)
-					}
-				</SwiperWrapper>
-				<SwiperButtonPrev addDefaultClass={true} class='!text-black'>
-					<ChevronLeftIcon class='w-6 h-6' />
-				</SwiperButtonPrev>
-				<SwiperButtonNext addDefaultClass={true} class='!text-black'>
-					<ChevronRightIcon class='w-6 h-6' />
-				</SwiperButtonNext>
-			</Swiper>
+		<div class='products-swiper-wrap w-full mx-auto mb-8 max-w-6xl px-10 md:px-12 lg:px-20 xl:px-24'>
+			{
+				categories.map((category) => {
+					const productsForType = getProductsByType(category.type);
+					const swiperUniqueClass = `products-swiper-${category.type}`;
+					const isDefault = category.type === defaultCategoryType;
+					return (
+						<div
+							class={`products-category-panel ${isDefault ? "" : "hidden"}`}
+							data-type={category.type}
+							aria-hidden={!isDefault}>
+							{productsForType.length > 0 ? (
+								<Swiper
+									uniqueClass={swiperUniqueClass}
+									useCustomElement={false}
+									addDefaultClass={false}
+									options={{
+										slidesPerView: 4,
+										slidesPerGroup: 1,
+										spaceBetween: 24,
+										loop: false,
+										navigation: {
+											nextEl: `.${swiperUniqueClass} .swiper-button-next`,
+											prevEl: `.${swiperUniqueClass} .swiper-button-prev`,
+										},
+										breakpoints: {
+											320: { slidesPerView: 1, slidesPerGroup: 1 },
+											640: { slidesPerView: 2, slidesPerGroup: 1 },
+											768: { slidesPerView: 3, slidesPerGroup: 1 },
+											1024: { slidesPerView: 4, slidesPerGroup: 1 },
+										},
+									}}>
+									<SwiperWrapper>
+										{productsForType.map((product) =>
+											product ? (
+												<SwiperSlide>
+													<ProductCard name={product.name} weight={product.weight} image={product.icon} />
+												</SwiperSlide>
+											) : null,
+										)}
+									</SwiperWrapper>
+									<SwiperButtonPrev addDefaultClass={true} class='!text-black'>
+										<Icon icon='arrow' class='w-6 h-6' />
+									</SwiperButtonPrev>
+									<SwiperButtonNext addDefaultClass={true} class='!text-black'>
+										<Icon icon='arrow' class='w-6 h-6 rotate-180' />
+									</SwiperButtonNext>
+									<SwiperPagination addDefaultClass={false} class='!text-black' />
+								</Swiper>
+							) : (
+								<p class='text-center text-muted font-body py-8'>No products in this category yet.</p>
+							)}
+						</div>
+					);
+				})
+			}
 		</div>
 	</div>
 
@@ -97,6 +141,7 @@ const productsForSwiper = [...products, ...products];
 		<Button
 			variant='primary'
 			size='lg'
+			href='https://shop.kfood.pk'
 			class='btn-cta hover:!cursor-pointer !bg-accent-orange !text-white !border-none w-[350px] !text-xl md:text-2xl lg:text-[30px]'>
 			Shop Now
 		</Button>
@@ -104,6 +149,13 @@ const productsForSwiper = [...products, ...products];
 </section>
 
 <style>
+	.category-buttons {
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+	}
+	.category-buttons::-webkit-scrollbar {
+		display: none;
+	}
 	.category-buttons .category-btn:hover .category-btn-icon img,
 	.category-buttons .category-btn:focus-visible .category-btn-icon img,
 	.category-buttons .category-btn:active .category-btn-icon img,
@@ -125,26 +177,42 @@ const productsForSwiper = [...products, ...products];
 		color: var(--color-kfood-primary);
 	}
 
-	.products-swiper-wrap :global(.products-swiper) {
+	.products-swiper-wrap :global([class^="products-swiper-"]) {
 		overflow: hidden;
 		position: relative;
 		width: 100%;
+		padding-bottom: 12px;
+		box-sizing: border-box;
 	}
-	.products-swiper-wrap :global(.products-swiper .swiper-slide) {
+	.products-swiper-wrap :global([class^="products-swiper-"] .swiper-wrapper) {
+		align-items: stretch;
+	}
+	.products-swiper-wrap :global([class^="products-swiper-"] .swiper-slide) {
 		height: auto;
+		display: flex;
+		padding: 2px 4px 14px 4px;
+		box-sizing: border-box;
+	}
+	.products-swiper-wrap :global([class^="products-swiper-"] .swiper-slide > *) {
+		flex: 1 1 auto;
+		min-height: 0;
+		width: 100%;
 	}
 	.products-swiper-wrap :global(.swiper-button-prev),
 	.products-swiper-wrap :global(.swiper-button-next) {
 		color: #8a8a8a;
 		width: 36px;
 		height: 36px;
-		top: 50%;
+		top: 38%;
 		margin-top: -18px;
+		left: 0;
+		right: auto;
 	}
 	.products-swiper-wrap :global(.swiper-button-prev) {
 		left: 0;
 	}
 	.products-swiper-wrap :global(.swiper-button-next) {
+		left: auto;
 		right: 0;
 	}
 	.products-swiper-wrap :global(.swiper-button-prev::after),
@@ -157,10 +225,42 @@ const productsForSwiper = [...products, ...products];
 </style>
 
 <script>
+	function selectProductType(type: string) {
+		const btn = document.querySelector(`.category-btn[data-type="${type}"]`);
+		if (!btn) return;
+		document.querySelectorAll(".category-btn").forEach((b) => b.setAttribute("aria-pressed", "false"));
+		btn.setAttribute("aria-pressed", "true");
+		document.querySelectorAll(".products-category-panel").forEach((panel) => {
+			const match = panel.getAttribute("data-type") === type;
+			panel.classList.toggle("hidden", !match);
+			panel.setAttribute("aria-hidden", String(!match));
+		});
+		setTimeout(() => {
+			const panel = document.querySelector(`.products-category-panel[data-type="${type}"]`);
+			const astroSwiperEl = panel?.querySelector("astro-swiper");
+			const swiper = (astroSwiperEl as HTMLElement & { astroSwiper?: { update?: () => void } })?.astroSwiper;
+			if (typeof swiper?.update === "function") swiper.update();
+		}, 0);
+	}
+
+	function applyHashSelection() {
+		const hash = window.location.hash;
+		const match = hash?.match(/^#products-(.+)$/);
+		const type = match?.[1];
+		if (type) {
+			document.getElementById("products")?.scrollIntoView({ behavior: "smooth", block: "start" });
+			selectProductType(type);
+		}
+	}
+
 	document.querySelectorAll(".category-btn").forEach((btn) => {
 		btn.addEventListener("click", () => {
-			document.querySelectorAll(".category-btn").forEach((b) => b.setAttribute("aria-pressed", "false"));
-			btn.setAttribute("aria-pressed", "true");
+			const type = btn.getAttribute("data-type");
+			if (!type) return;
+			selectProductType(type);
 		});
 	});
+
+	applyHashSelection();
+	window.addEventListener("hashchange", applyHashSelection);
 </script>

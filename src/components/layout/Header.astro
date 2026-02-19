@@ -1,26 +1,45 @@
 ---
 import Logo from "../../assets/logo.png";
 import type { ImageMetadata } from "astro";
-import { Search, Menu, X, ChevronDown } from "@lucide/astro";
+import { Menu, X, ChevronDown } from "@lucide/astro";
+import Button from "../ui/Button.astro";
 
 const logo: ImageMetadata = Logo;
+interface Announcement {
+	label: string;
+	href: string;
+}
 
-const productCategories = [
-	{ label: "Butter", href: "#products" },
-	{ label: "Flour", href: "#products" },
-	{ label: "Milk", href: "#products" },
-	{ label: "Yogurt", href: "#products" },
-	{ label: "Ghee", href: "#products" },
+const announcments: Announcement[] = [
+	{ label: "Bilona Neeli Ravi Desi Ghee - Now Available Online", href: "#" },
+	{ label: "Discover Our Selection of 6 Premium Flours", href: "#" },
+	{ label: "KFood Now Live in 8 Cities Across Pakistan", href: "#" },
+	{ label: "Pure, Traditional, and Delivered to Your Doorstep", href: "#" },
+	{ label: "Quality You Can Trust, Products You’ll Love", href: "#" },
 ];
 
-const brandLinks = [
-	{ label: "Network & Trust", href: "#network-trust" },
-	{ label: "Our Customers", href: "#customers" },
+const productCategories = [
+	// { label: "Butter", href: "#products-ghee", type: "ghee" },
+	{ label: "Flour", href: "#products-flour", type: "flour" },
+	// { label: "Milk", href: "#products-flour", type: "flour" },
+	{ label: "Yogurt", href: "#products-yogurt", type: "yogurt" },
+	{ label: "Ghee", href: "#products-ghee", type: "ghee" },
 ];
 ---
 
 <header class='sticky top-0 z-50'>
-	<div class='h-10 md:h-[84px] w-full bg-kfood-primary'></div>
+	<div
+		class='announcement-bar h-10 md:h-12 w-full bg-kfood-primary flex items-center justify-center'
+		data-announcements={JSON.stringify(announcments)}>
+		<div class='container mx-auto px-4 md:px-10 flex justify-center'>
+			<a
+				id='announcement-bar-link'
+				href={announcments[0]?.href ?? "#"}
+				class='block text-white text-sm md:text-base font-body text-center hover:opacity-90 transition-opacity'>
+				{announcments[0]?.label ?? ""}
+			</a>
+		</div>
+	</div>
 	<nav
 		class='flex min-h-[80px] md:min-h-[110px] items-center justify-between bg-kfood-background px-4 py-4 md:px-10 font-body'>
 		<a href='/' class='flex shrink-0'>
@@ -59,7 +78,8 @@ const brandLinks = [
 											<li>
 												<a
 													href={cat.href}
-													class='block px-4 py-2.5 text-kfood-primary hover:bg-gray-100 cursor-pointer'>
+													class='block px-4 py-2.5 text-kfood-primary hover:bg-gray-100 cursor-pointer'
+													data-product-type={cat.type}>
 													{cat.label}
 												</a>
 											</li>
@@ -70,7 +90,7 @@ const brandLinks = [
 						</li>
 					</ul>
 				</li>
-				<li class='relative' id='brands-nav-item'>
+				<!-- <li class='relative' id='brands-nav-item'>
 					<button
 						type='button'
 						class='flex items-center gap-0.5 hover:opacity-80 transition-opacity bg-transparent border-none cursor-pointer text-inherit text-[15px] leading-[15px] font-inherit p-0'
@@ -103,29 +123,28 @@ const brandLinks = [
 							</ul>
 						</li>
 					</ul>
-				</li>
-				<li><a href='#careers' class='hover:opacity-80 transition-opacity cursor-pointer'>Careers</a></li>
-				<li><a href='#store-locator' class='hover:opacity-80 transition-opacity cursor-pointer'>Find a Store</a></li>
-				<li><a href='#partner-form' class='hover:opacity-80 transition-opacity cursor-pointer'>Partnerships</a></li>
-				<li><a href='#news-section' class='hover:opacity-80 transition-opacity cursor-pointer'>News</a></li>
+				</li> -->
 				<li>
 					<a
-						href='#'
-						class='rounded-button bg-kfood-orange px-5 py-2.5 text-white transition-opacity hover:opacity-90 text-body-sm cursor-pointer'>
-						Shop Online
+						href='https://waseela.global/career'
+						target='_blank'
+						rel='noopener noreferrer'
+						class='hover:opacity-80 transition-opacity cursor-pointer'>
+						Careers
 					</a>
 				</li>
+				<li><a href='#store-locator' class='hover:opacity-80 transition-opacity cursor-pointer'>Find a Store</a></li>
+				<li><a href='#partner-form' class='hover:opacity-80 transition-opacity cursor-pointer'>Partnerships</a></li>
+				<li><a href='/#news-section' class='hover:opacity-80 transition-opacity cursor-pointer'>News</a></li>
 			</ul>
 		</div>
 
 		<div class='hidden lg:flex items-center gap-6'>
-			<button
-				type='button'
-				id='search-open-btn'
-				class='flex items-center justify-center text-kfood-primary hover:opacity-80 transition-opacity cursor-pointer'
-				aria-label='Open search'>
-				<Search class='h-6 w-6' />
-			</button>
+			<Button
+				href=' https://shop.kfood.pk'
+				class='rounded-button bg-kfood-orange px-5 py-2.5 text-white transition-opacity hover:opacity-90 text-body-sm cursor-pointer'>
+				Shop Online
+			</Button>
 		</div>
 
 		<button
@@ -138,45 +157,8 @@ const brandLinks = [
 		</button>
 	</nav>
 
-	<div
-		id='search-overlay'
-		class='hidden absolute inset-x-0 top-full z-40 bg-kfood-background border-b border-gray-200 shadow-md'>
-		<div class='px-4 md:px-10 py-4 flex items-center gap-3 max-w-3xl mx-auto'>
-			<input
-				type='search'
-				id='search-input'
-				placeholder='Search products...'
-				class='flex-1 px-4 py-3 border border-gray-300 rounded-lg text-kfood-primary placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-kfood-primary focus:border-transparent'
-				aria-label='Search'
-			/>
-			<button
-				type='button'
-				id='search-close-btn'
-				class='p-2 text-kfood-primary hover:opacity-80 transition-opacity rounded-lg cursor-pointer'
-				aria-label='Close search'>
-				<X class='h-6 w-6' />
-			</button>
-		</div>
-	</div>
-
 	<div id='mobile-menu' class='hidden lg:hidden bg-kfood-background border-t border-gray-200'>
 		<div class='py-4 px-4 space-y-1 text-kfood-primary font-body'>
-			<button
-				type='button'
-				id='mobile-search-btn'
-				class='flex items-center gap-2 w-full py-2.5 hover:opacity-80 transition-opacity text-left text-[15px] cursor-pointer'>
-				<Search class='h-5 w-5 shrink-0' />
-				<span>Search</span>
-			</button>
-			<div id='mobile-search-bar' class='hidden pb-3'>
-				<input
-					type='search'
-					id='mobile-search-input'
-					placeholder='Search products...'
-					class='w-full px-4 py-3 border border-gray-300 rounded-lg text-kfood-primary placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-kfood-primary'
-					aria-label='Search'
-				/>
-			</div>
 			<a href='/' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Home</a>
 			<a href='#about-kfood' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>About KFood</a>
 			<div class='border-t border-gray-100'>
@@ -204,7 +186,7 @@ const brandLinks = [
 					}
 				</ul>
 			</div>
-			<div class='border-t border-gray-100'>
+			<!-- <div class='border-t border-gray-100'>
 				<button
 					type='button'
 					id='mobile-brands-toggle'
@@ -227,14 +209,21 @@ const brandLinks = [
 						)
 					}
 				</ul>
-			</div>
-			<a href='#careers' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Careers</a>
+			</div> -->
+			<a
+				href='https://waseela.global/career'
+				target='_blank'
+				rel='noopener noreferrer'
+				class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Careers</a
+			>
 			<a href='#store-locator' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Find a Store</a>
 			<a href='#partner-form' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Partnerships</a>
-			<a href='#news-section' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>News</a>
+			<a href='/#news-section' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>News</a>
 			<div class='pt-2 border-t border-gray-200'>
 				<a
-					href='#'
+					href=' https://shop.kfood.pk'
+					target='_blank'
+					rel='noopener noreferrer'
 					class='block w-full rounded-button bg-kfood-orange px-5 py-2.5 text-white text-center transition-opacity hover:opacity-90 cursor-pointer'>
 					Shop Online
 				</a>
@@ -244,6 +233,30 @@ const brandLinks = [
 </header>
 
 <script>
+	(function () {
+		const bar = document.querySelector(".announcement-bar");
+		const link = document.getElementById("announcement-bar-link");
+		const raw = bar?.getAttribute("data-announcements");
+		if (!bar || !link || !raw) return;
+		let list: { label: string; href: string }[];
+		try {
+			list = JSON.parse(raw);
+		} catch {
+			return;
+		}
+		if (list.length <= 1) return;
+		let index = 0;
+		const anchor = link as HTMLAnchorElement;
+		setInterval(() => {
+			index = (index + 1) % list.length;
+			const item = list[index];
+			if (item) {
+				anchor.href = item.href;
+				anchor.textContent = item.label;
+			}
+		}, 4000);
+	})();
+
 	const menuButton = document.getElementById("mobile-menu-button");
 	const mobileMenu = document.getElementById("mobile-menu");
 	const menuIcon = document.getElementById("menu-icon");
@@ -264,47 +277,6 @@ const brandLinks = [
 	const mobileLinks = mobileMenu?.querySelectorAll("a");
 	mobileLinks?.forEach((link) => {
 		link.addEventListener("click", closeMobileMenu);
-	});
-
-	const searchOverlay = document.getElementById("search-overlay");
-	const searchOpenBtn = document.getElementById("search-open-btn");
-	const searchCloseBtn = document.getElementById("search-close-btn");
-	const searchInput = document.getElementById("search-input");
-
-	function openSearch() {
-		searchOverlay?.classList.remove("hidden");
-		(searchInput as HTMLInputElement)?.focus();
-	}
-
-	function closeSearch() {
-		searchOverlay?.classList.add("hidden");
-		(searchInput as HTMLInputElement).value = "";
-	}
-
-	searchOpenBtn?.addEventListener("click", openSearch);
-	searchCloseBtn?.addEventListener("click", closeSearch);
-
-	document.addEventListener("click", (e: MouseEvent) => {
-		const target = e.target as Node;
-		if (
-			searchOverlay &&
-			!searchOverlay.contains(target) &&
-			!searchOpenBtn?.contains(target) &&
-			!searchOverlay.classList.contains("hidden")
-		) {
-			closeSearch();
-		}
-	});
-
-	const mobileSearchBtn = document.getElementById("mobile-search-btn");
-	const mobileSearchBar = document.getElementById("mobile-search-bar");
-	const mobileSearchInput = document.getElementById("mobile-search-input");
-
-	mobileSearchBtn?.addEventListener("click", () => {
-		mobileSearchBar?.classList.toggle("hidden");
-		if (!mobileSearchBar?.classList.contains("hidden")) {
-			(mobileSearchInput as HTMLInputElement)?.focus();
-		}
 	});
 
 	const mobileProductsToggle = document.getElementById("mobile-products-toggle");
@@ -375,7 +347,9 @@ const brandLinks = [
 		const target = e.target as Node;
 		const productsItem = document.getElementById("products-nav-item");
 		const brandsItem = document.getElementById("brands-nav-item");
-		if (productsItem && !productsItem.contains(target) && brandsItem && !brandsItem.contains(target)) {
+		const outsideProducts = productsItem && !productsItem.contains(target);
+		const outsideBrands = !brandsItem || !brandsItem.contains(target);
+		if (outsideProducts && outsideBrands) {
 			closeDesktopDropdowns();
 		}
 	});

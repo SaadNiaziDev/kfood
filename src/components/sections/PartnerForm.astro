@@ -7,7 +7,7 @@ const partnerTypes = [
 	{
 		icon: "Retailers",
 		title: "Retailers",
-		description: "Partner with us to stock Kfood products in your stores and supermarkets.",
+		description: "Partner with us to stock KFood products in your stores and supermarkets.",
 	},
 	{
 		icon: "Distributors",
@@ -22,17 +22,13 @@ const partnerTypes = [
 ];
 
 const benefits = ["Competitive margins", "Marketing support", "Reliable supply chain", "Growing brand recognition"];
+
+const formAction = import.meta.env.PUBLIC_FORM_SUBMIT_URL || "#";
 ---
 
 <section id='contact' class='bg-cream relative py-16 lg:py-20 overflow-hidden bg-section'>
-	<div class='container mx-auto px-4 relative z-10'>
-		<div class='flex justify-center mb-6'>
-			<div
-				class='w-[60px] h-[60px] md:w-[81px] md:h-[81px] rounded-full flex items-center justify-center bg-kfood-primary'>
-				<Icon icon='Partner' class='w-[35px] h-[35px] md:w-[50px] md:h-[50px] text-white' />
-			</div>
-		</div>
-		<h2 class='text-center mb-4 text-heading-section px-4'>Partner with Kfood</h2>
+	<div class='px-6 md:px-10 lg:px-16 relative z-10'>
+		<h2 class='text-center mb-4 text-heading-section px-4'>Partner with KFood</h2>
 		<p class='text-center mx-auto mb-12 text-body-lg px-4'>
 			Join the KFood family as a retail partner, distributor, or institutional buyer. Grow your business with trusted
 			food products.
@@ -79,23 +75,28 @@ const benefits = ["Competitive margins", "Marketing support", "Reliable supply c
 			<div class='md:col-span-1'>
 				<div class='bg-white rounded-card px-8 py-4'>
 					<h3 class='text-[25px] leading-[60px] font-medium mb-2 font-heading text-kfood-primary'>Get in Touch</h3>
-					<form class='space-y-5' id='partner-form' method='POST' action='#'>
+					<form class='space-y-5' id='partner-form' method='POST' action={formAction}>
 						<div class='grid grid-cols-1 sm:grid-cols-2 gap-5'>
 							<div>
-								<label class='block text-[17px] leading-[60px] font-medium mb-1 font-heading text-kfood-primary'>
+								<label class='block text-[17px] leading-[60px] font-medium mb-1 font-heading text-kfood-primary' for='partner-name'>
 									Full Name
 								</label>
 								<input
+									id='partner-name'
+									name='name'
 									type='text'
+									required
 									class='w-full h-[39px] px-4 rounded-button text-[17px] leading-[17px] outline-none focus:ring-2 focus:ring-accent-orange focus:ring-offset-0 bg-section font-body text-kfood-body placeholder-[#C5C5C5]'
 									placeholder='Your name'
 								/>
 							</div>
 							<div>
-								<label class='block text-[17px] leading-[60px] font-medium mb-1 font-heading text-kfood-primary'>
+								<label class='block text-[17px] leading-[60px] font-medium mb-1 font-heading text-kfood-primary' for='partner-company'>
 									Company Name
 								</label>
 								<input
+									id='partner-company'
+									name='company'
 									type='text'
 									class='w-full h-[39px] px-4 rounded-button text-[17px] leading-[17px] outline-none focus:ring-2 focus:ring-accent-orange focus:ring-offset-0 bg-section font-body text-kfood-body placeholder-[#C5C5C5]'
 									placeholder='Your company'
@@ -103,40 +104,48 @@ const benefits = ["Competitive margins", "Marketing support", "Reliable supply c
 							</div>
 						</div>
 						<div>
-							<label class='block text-[17px] leading-[60px] font-medium mb-1 font-heading text-kfood-primary'>
+							<label class='block text-[17px] leading-[60px] font-medium mb-1 font-heading text-kfood-primary' for='partner-email'>
 								Email Address
 							</label>
 							<input
+								id='partner-email'
+								name='email'
 								type='email'
+								required
 								class='w-full h-[39px] px-4 rounded-button text-[17px] leading-[17px] outline-none focus:ring-2 focus:ring-accent-orange focus:ring-offset-0 bg-section font-body text-kfood-body placeholder-[#C5C5C5]'
 								placeholder='you@company.com'
 							/>
 						</div>
 						<div>
-							<label class='block text-[17px] leading-[60px] font-medium mb-1 font-heading text-kfood-primary'>
+							<label class='block text-[17px] leading-[60px] font-medium mb-1 font-heading text-kfood-primary' for='partner-phone'>
 								Phone Number
 							</label>
 							<input
+								id='partner-phone'
+								name='phone'
 								type='tel'
 								class='w-full h-[39px] px-4 rounded-button text-[17px] leading-[17px] outline-none focus:ring-2 focus:ring-accent-orange focus:ring-offset-0 bg-section font-body text-kfood-body placeholder-[#C5C5C5]'
 								placeholder='+92 000 0000 000'
 							/>
 						</div>
 						<div>
-							<label class='block text-[17px] leading-[60px] font-medium mb-1 font-heading text-kfood-primary'>
+							<label class='block text-[17px] leading-[60px] font-medium mb-1 font-heading text-kfood-primary' for='partner-message'>
 								Message
 							</label>
 							<textarea
+								id='partner-message'
+								name='message'
 								rows='5'
 								class='w-full min-h-[139px] px-4 py-3 rounded-button text-[17px] leading-[17px] outline-none focus:ring-2 focus:ring-accent-orange focus:ring-offset-0 resize-y bg-section font-body text-kfood-body placeholder-[#C5C5C5]'
 								placeholder='Tell us about your partnership interest...'></textarea>
 						</div>
 						<button
 							type='submit'
-							class='w-full btn-primary bg-accent-orange text-white hover:bg-accent-orange/90 py-2 rounded-button font-Oswald mb-2'>
+							id='partner-submit-btn'
+							class='w-full btn-primary bg-accent-orange text-white hover:bg-accent-orange/90 py-2 rounded-button font-body mb-2'>
 							Submit Inquiry
 						</button>
-						<p class='text-[16px] leading-[16px] text-center font-body text-muted'>
+						<p id='partner-form-status' class='text-[16px] leading-[16px] text-center font-body text-muted'>
 							We typically respond within 2 business days.
 						</p>
 					</form>
@@ -147,7 +156,43 @@ const benefits = ["Competitive margins", "Marketing support", "Reliable supply c
 </section>
 
 <script>
-	document.getElementById("partner-form")?.addEventListener("submit", (e) => {
+	const form = document.getElementById("partner-form") as HTMLFormElement | null;
+	const btn = document.getElementById("partner-submit-btn") as HTMLButtonElement | null;
+	const status = document.getElementById("partner-form-status") as HTMLParagraphElement | null;
+
+	form?.addEventListener("submit", async (e) => {
 		e.preventDefault();
+		if (!btn || !status) return;
+
+		const action = form.getAttribute("action");
+		if (!action || action === "#") return;
+
+		btn.disabled = true;
+		btn.textContent = "Sending...";
+		status.textContent = "";
+		status.className = "text-[16px] leading-[16px] text-center font-body text-muted";
+
+		try {
+			const res = await fetch(action, {
+				method: "POST",
+				body: new FormData(form),
+			});
+			const data = await res.json();
+
+			if (res.ok && data.success) {
+				status.textContent = "Thank you! We will get back to you soon.";
+				status.classList.replace("text-muted", "text-green-600");
+				form.reset();
+			} else {
+				status.textContent = data.error || "Something went wrong. Please try again.";
+				status.classList.replace("text-muted", "text-red-500");
+			}
+		} catch {
+			status.textContent = "Network error. Please try again.";
+			status.classList.replace("text-muted", "text-red-500");
+		} finally {
+			btn.disabled = false;
+			btn.textContent = "Submit Inquiry";
+		}
 	});
 </script>

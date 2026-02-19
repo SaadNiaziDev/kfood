@@ -1,0 +1,112 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import { Image } from "astro:assets";
+import { posts } from "../../data/posts";
+
+const categories = [...new Set(posts.map((p) => p.category))];
+---
+
+<Layout>
+	<Header />
+	<main>
+		<section class='bg-kfood-primary py-16 md:py-24'>
+			<div class='px-6 md:px-10 lg:px-16 max-w-6xl mx-auto text-center'>
+				<h1 class='text-heading-section !text-white mb-4'>News & Updates</h1>
+				<p class='text-body-lg !text-white/80 max-w-2xl mx-auto'>
+					Stay updated with the happenings at KFood — new launches, partnerships, farmer stories and more.
+				</p>
+			</div>
+		</section>
+
+		<section class='py-12 md:py-16 bg-white'>
+			<div class='px-6 md:px-10 lg:px-16 max-w-6xl mx-auto'>
+				<div class='flex flex-wrap gap-3 mb-10 justify-center'>
+					<button
+						type='button'
+						class='blog-filter-btn px-5 py-2 rounded-full text-sm font-body font-medium transition-colors cursor-pointer bg-kfood-primary text-white'
+						data-category='all'
+						aria-pressed='true'>
+						All
+					</button>
+					{
+						categories.map((cat) => (
+							<button
+								type='button'
+								class='blog-filter-btn px-5 py-2 rounded-full text-sm font-body font-medium transition-colors cursor-pointer bg-gray-100 text-kfood-body hover:bg-gray-200'
+								data-category={cat}
+								aria-pressed='false'>
+								{cat}
+							</button>
+						))
+					}
+				</div>
+
+				<div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8' id='blog-grid'>
+					{
+						posts.map((post) =>
+							post ? (
+								<a
+									href={`/blog/${post.slug}`}
+									class='blog-card group block rounded-card overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300'
+									data-category={post.category}>
+									<div class='relative overflow-hidden'>
+										<Image
+											src={post.image}
+											alt={post.title}
+											class='w-full h-[220px] object-cover group-hover:scale-105 transition-transform duration-500'
+										/>
+										<span class='absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-body font-medium bg-accent-orange text-white'>
+											{post.category}
+										</span>
+									</div>
+									<div class='p-5 bg-white'>
+										<p class='text-xs font-body text-muted mb-2'>{post.date}</p>
+										<h2 class='font-heading text-lg font-medium text-kfood-primary mb-2 group-hover:text-accent-orange transition-colors'>
+											{post.title}
+										</h2>
+										<p class='text-sm font-body text-muted line-clamp-3'>{post.excerpt}</p>
+									</div>
+								</a>
+							) : null,
+						)
+					}
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.blog-filter-btn[aria-pressed="true"] {
+		background-color: var(--color-kfood-primary);
+		color: #fff;
+	}
+</style>
+
+<script>
+	document.querySelectorAll(".blog-filter-btn").forEach((btn) => {
+		btn.addEventListener("click", () => {
+			const category = btn.getAttribute("data-category");
+			if (!category) return;
+			document
+				.querySelectorAll(".blog-filter-btn")
+				.forEach((b) => {
+					b.setAttribute("aria-pressed", "false");
+					b.classList.remove("bg-kfood-primary", "text-white");
+					b.classList.add("bg-gray-100", "text-kfood-body");
+				});
+			btn.setAttribute("aria-pressed", "true");
+			btn.classList.remove("bg-gray-100", "text-kfood-body");
+			btn.classList.add("bg-kfood-primary", "text-white");
+
+			document.querySelectorAll(".blog-card").forEach((card) => {
+				const cardCat = card.getAttribute("data-category");
+				const show = category === "all" || cardCat === category;
+				(card as HTMLElement).style.display = show ? "" : "none";
+			});
+		});
+	});
+</script>

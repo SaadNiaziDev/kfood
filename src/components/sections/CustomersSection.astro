@@ -9,21 +9,21 @@ import JalalSonsLogo from "../../assets/jalal_sons.png";
 import RainbowLogo from "../../assets/rainbow.png";
 
 const testimonials = [
+	// {
+	// 	quote:
+	// 		"KFood’s dedication to supporting local agriculture is evident in the integrity of every item they provide. They offer our customers a genuine connection between the farm and the table, delivering authenticity in every bite. Choosing KFood is a commitment to trust, freshness, and community-driven quality",
+	// 	customerName: "Metro Foods",
+	// 	logoImage: MetroLogo,
+	// },
 	{
 		quote:
-			"We work as a catalyst for change, bridging the gap between data-driven research and real-world impact. By understanding the needs of rural communities and combining insights with practical solutions, Waseela develops projects that boost productivity, improve livelihoods, and foster sustainable economic growth.",
-		customerName: "Metro Foods",
-		logoImage: MetroLogo,
-	},
-	{
-		quote:
-			"We work as a catalyst for change, bridging the gap between data-driven research and real-world impact. By understanding the needs of rural communities and combining insights with practical solutions, Waseela develops projects that boost productivity, improve livelihoods, and foster sustainable economic growth.",
+			"KFood ensures that top-tier quality is delivered consistently. Our shoppers immediately recognize the superior standards of their products. KFood’s reliable delivery process shows how much they care about both the quality of their food and the satisfaction of our customers.",
 		customerName: "Jalal Sons",
 		logoImage: JalalSonsLogo,
 	},
 	{
 		quote:
-			"We work as a catalyst for change, bridging the gap between data-driven research and real-world impact. By understanding the needs of rural communities and combining insights with practical solutions, Waseela develops projects that boost productivity, improve livelihoods, and foster sustainable economic growth.",
+			"Their commitment to premium quality is a genuine market differentiator. For customers seeking wholesome, authentic nutrition, KFood is a complete game-changer; it truly brings the essence of the farm into the retail aisle. They have become a brand that our customers know they can rely on",
 		customerName: "Carrefour",
 		logoImage: CarrefourLogo,
 	},
@@ -32,41 +32,100 @@ const testimonials = [
 const partnerLogos = [
 	{ name: "Jalal Sons", src: JalalSonsLogo },
 	{ name: "Carrefour", src: CarrefourLogo },
-	{ name: "Rainbow", src: RainbowLogo },
-	{ name: "CSD", src: CsdLogo },
-	{ name: "Metro Foods", src: MetroLogo },
-	{ name: "Imtiaz", src: ImtiazLogo },
+	// { name: "Rainbow", src: RainbowLogo },
+	// { name: "CSD", src: CsdLogo },
+	// { name: "Metro Foods", src: MetroLogo },
+	// { name: "Imtiaz", src: ImtiazLogo },
 ];
 ---
 
 <section id='customers' class='py-16 lg:py-20 bg-white'>
-	<div class='container mx-auto px-4'>
+	<div class='px-6 md:px-10 lg:px-16'>
 		<h2 class='text-center text-heading-section mb-12 lg:mb-16'>Our Customers</h2>
-
-		<div class='grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-16 lg:mb-20 max-w-6xl mx-auto'>
+		<div
+			class='customers-testimonials flex flex-nowrap overflow-x-auto gap-6 md:flex md:flex-wrap md:justify-center md:overflow-visible md:gap-8 lg:gap-12 mb-16 lg:mb-20 max-w-6xl mx-auto snap-x snap-mandatory pt-16 md:pt-0'>
 			{
 				testimonials.map((testimonial) =>
 					testimonial ? (
-						<TestimonialCard
-							quote={testimonial.quote}
-							customerName={testimonial.customerName}
-							logoImage={testimonial.logoImage}
-						/>
-					) : null,
-				)
-			}
-		</div>
-
-		<div class='flex flex-wrap justify-center items-center gap-8 lg:gap-12 pt-10 border-t border-gray-200'>
-			{
-				partnerLogos.map((partner) =>
-					partner ? (
-						<div class='flex items-center justify-center h-16 lg:h-20 px-6  hover:grayscale-0 opacity-80 hover:opacity-100 transition-all'>
-							{partner.src && <Image src={partner.src} alt={partner.name} class='max-h-full w-auto object-contain' />}
+						<div class='customers-testimonials__slide shrink-0 w-[85vw] min-w-[280px] md:w-auto md:min-w-0 snap-start overflow-visible '>
+							<TestimonialCard
+								quote={testimonial.quote}
+								customerName={testimonial.customerName}
+								logoImage={testimonial.logoImage}
+							/>
 						</div>
 					) : null,
 				)
 			}
 		</div>
+
+		<!-- <div class='marquee-container overflow-hidden pt-0 sm:pt-10'>
+			<div class='marquee-track'>
+				<div class='marquee-group'>
+					{
+						partnerLogos.map((partner) =>
+							partner ? (
+								<div class='marquee-item flex items-center justify-center h-16 lg:h-20 px-6 opacity-80 hover:opacity-100 transition-all'>
+									<Image src={partner.src} alt={partner.name} class='max-h-full w-auto object-contain' />
+								</div>
+							) : null,
+						)
+					}
+				</div>
+				<div class='marquee-group' aria-hidden='true'>
+					{
+						partnerLogos.map((partner) =>
+							partner ? (
+								<div class='marquee-item flex items-center justify-center h-16 lg:h-20 px-6 opacity-80 hover:opacity-100 transition-all'>
+									<Image src={partner.src} alt={partner.name} class='max-h-full w-auto object-contain' />
+								</div>
+							) : null,
+						)
+					}
+				</div>
+			</div>
+		</div> -->
 	</div>
 </section>
+
+<style>
+	.customers-testimonials {
+		padding-bottom: 5px !important;
+	}
+
+	.marquee-container {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.marquee-track {
+		display: inline-flex;
+		flex-wrap: nowrap;
+		animation: marquee-scroll 5s linear infinite;
+		will-change: transform;
+	}
+
+	.marquee-group {
+		display: inline-flex;
+		flex-wrap: nowrap;
+		flex-shrink: 0;
+		align-items: center;
+	}
+
+	.marquee-item {
+		flex-shrink: 0;
+	}
+
+	@keyframes marquee-scroll {
+		from {
+			transform: translate3d(0, 0, 0);
+		}
+		to {
+			transform: translate3d(-50%, 0, 0);
+		}
+	}
+
+	.marquee-container:hover .marquee-track {
+		animation-play-state: paused;
+	}
+</style>
