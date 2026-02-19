@@ -49,7 +49,7 @@ const productCategories = [
 		<div>
 			<ul class='hidden items-center gap-6 lg:flex xl:gap-8 text-[15px] leading-[15px] text-kfood-primary'>
 				<li><a href='/' class='hover:opacity-80 transition-opacity cursor-pointer'>Home</a></li>
-				<li><a href='#about-kfood' class='hover:opacity-80 transition-opacity cursor-pointer'>About KFood</a></li>
+				<li><a href='/#about-kfood' class='hover:opacity-80 transition-opacity cursor-pointer'>About KFood</a></li>
 				<li class='relative' id='products-nav-item'>
 					<button
 						type='button'
@@ -68,7 +68,7 @@ const productCategories = [
 						<li>
 							<ul class='bg-kfood-background border border-gray-200 rounded-lg shadow-lg overflow-hidden list-none'>
 								<li>
-									<a href='#products' class='block px-4 py-2.5 text-kfood-primary hover:bg-gray-100 cursor-pointer'
+									<a href='/#products' class='block px-4 py-2.5 text-kfood-primary hover:bg-gray-100 cursor-pointer'
 										>View all</a
 									>
 								</li>
@@ -133,8 +133,8 @@ const productCategories = [
 						Careers
 					</a>
 				</li>
-				<li><a href='#store-locator' class='hover:opacity-80 transition-opacity cursor-pointer'>Find a Store</a></li>
-				<li><a href='#partner-form' class='hover:opacity-80 transition-opacity cursor-pointer'>Partnerships</a></li>
+				<li><a href='/#store-locator' class='hover:opacity-80 transition-opacity cursor-pointer'>Find a Store</a></li>
+				<li><a href='/#partner-form' class='hover:opacity-80 transition-opacity cursor-pointer'>Partnerships</a></li>
 				<li><a href='/#news-section' class='hover:opacity-80 transition-opacity cursor-pointer'>News</a></li>
 			</ul>
 		</div>
@@ -160,7 +160,7 @@ const productCategories = [
 	<div id='mobile-menu' class='hidden lg:hidden bg-kfood-background border-t border-gray-200'>
 		<div class='py-4 px-4 space-y-1 text-kfood-primary font-body'>
 			<a href='/' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Home</a>
-			<a href='#about-kfood' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>About KFood</a>
+			<a href='/#about-kfood' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>About KFood</a>
 			<div class='border-t border-gray-100'>
 				<button
 					type='button'
@@ -172,7 +172,7 @@ const productCategories = [
 					<ChevronDown class='h-5 w-5 shrink-0 transition-transform' id='mobile-products-chevron' />
 				</button>
 				<ul id='mobile-products-list' class='hidden pl-4 space-y-0 pb-2'>
-					<li><a href='#products' class='block py-1.5 hover:opacity-80 cursor-pointer'>View all</a></li>
+					<li><a href='/#products' class='block py-1.5 hover:opacity-80 cursor-pointer'>View all</a></li>
 					{
 						productCategories.map((cat) =>
 							cat ? (
@@ -216,8 +216,8 @@ const productCategories = [
 				rel='noopener noreferrer'
 				class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Careers</a
 			>
-			<a href='#store-locator' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Find a Store</a>
-			<a href='#partner-form' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Partnerships</a>
+			<a href='/#store-locator' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Find a Store</a>
+			<a href='/#partner-form' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>Partnerships</a>
 			<a href='/#news-section' class='block py-2.5 hover:opacity-80 transition-opacity cursor-pointer'>News</a>
 			<div class='pt-2 border-t border-gray-200'>
 				<a
